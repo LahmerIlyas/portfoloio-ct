@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14.1
+    volumes:
+      - toptal-calories-counter-postgres-volumes:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=root
+    ports:
+      - 5432:5432
+  redis:
+    image: redis:6.2.6
+    ports:
+      - 6379:6379
+volumes:
+  toptal-calories-counter-postgres-volumes:

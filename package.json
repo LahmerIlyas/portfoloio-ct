@@ -1,0 +1,12 @@
+{
+  "name": "toptal-calories-counter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LahmerIlyas/toptal-calories-counter.git",
+  "author": "Lahmer Ilyas <ilyaslahmer93@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+      "packages": ["packages/*"]
+  }
+}
