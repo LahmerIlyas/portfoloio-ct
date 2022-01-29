@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The Toptal Calories Tracker App API description')
     .setVersion('1.0')
     .addTag('calories-tracker')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger-ui', app, document);

@@ -4,6 +4,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RegisterDto } from './dto/register.dto';
+import { UserProfileSerializer } from './serializer/user-profile.serializer';
 
 @Injectable()
 export class UsersService {
@@ -24,9 +25,5 @@ export class UsersService {
   public async createUser(input: RegisterDto) {
     const entity = await this.userRepository.save(input);
     return await this.generateToken(entity.id);
-  }
-
-  public async getUserProfile(id: number) {
-    
   }
 }
