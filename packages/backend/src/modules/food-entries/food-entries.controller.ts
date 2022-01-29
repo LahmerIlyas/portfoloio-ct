@@ -3,7 +3,9 @@ import { Controller, UseGuards } from '@nestjs/common';
 import { Crud, CrudAuth, CrudController, CrudRequest, Override, ParsedBody, ParsedRequest } from '@nestjsx/crud';
 import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
 import { FoodEntriesService } from './food-entries.service';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
+import { CreateFoodEntryDto } from './dto/create-food-entry.dto';
+import { FoodEntrySerializer, GetManyFoodEntriesSerializer } from './serializer/food-entry.serializer';
 
 @Crud({
   model: {
@@ -11,7 +13,15 @@ import { ApiBearerAuth } from '@nestjs/swagger';
     },
     query: {
         alwaysPaginate: true,
-    },
+  },
+  dto: {
+    create: CreateFoodEntryDto,
+  },
+  serialize: {
+    getMany: GetManyFoodEntriesSerializer,
+    create: FoodEntrySerializer,
+    get: FoodEntrySerializer
+  },
     routes: {
         only: ['createOneBase', 'getManyBase']
     }
@@ -32,7 +42,7 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @Override()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  createOne(@ParsedRequest() req: CrudRequest, @ParsedBody() dto: any) {
+  createOne(@ParsedRequest() req: CrudRequest, @ParsedBody() dto: CreateFoodEntryDto) {
     return this.service.createOne(req, dto);
   }
 
