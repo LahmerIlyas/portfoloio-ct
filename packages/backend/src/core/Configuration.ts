@@ -10,8 +10,8 @@ export const Configuration = {
   database: clientDatabaseConfiguration as TypeOrmModuleOptions,
   isProduction,
   jwt: {
-    secret: process.env.JWT_SECRET_KEY,
-    signOptions: { expiresIn: '60s' },
+    secret: process.env.JWT_SECRET_KEY || 'testsecret',
+    signOptions: { expiresIn: '1d' },
   },
   redis: process.env.REDIS_URI || 'redis://localhost:6379',
 };

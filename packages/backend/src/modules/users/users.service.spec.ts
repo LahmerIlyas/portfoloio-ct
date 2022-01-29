@@ -1,38 +1,26 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
+import { UserEntity } from '@toptal-calories-counter/database';
 import { UsersService } from './users.service';
-import { newDb } from 'pg-mem';
-import { Connection } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
+import { mockDatabaseConnection, mockTypeormRepository } from '../../core';
 
 describe('UsersService', () => {
   let service: UsersService;
   let connection: Connection;
+  let userRepository: Repository<UserEntity>;
 
   beforeAll(async () => {
-    const db = newDb({
-       autoCreateForeignKeyIndices: true,
-   });
-    db.public.registerFunction({
-      implementation: () => 'test',
-      name: 'current_database',
-    });
-    connection = await db.adapters.createTypeormConnection({
-        type: 'postgres',
-        entities: [UserEntity, FoodEntryEntity]
-    });
-    await connection.synchronize();
-
+    connection = await mockDatabaseConnection();
+    userRepository = connection.getRepository<UserEntity>('UserEntity');
   })
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [TypeOrmModule.forFeature([UserEntity])],
-      providers: [UsersService],
-    })
-      .overrideProvider(Connection)
-      .useValue(connection)
-      .compile();
+      providers: [
+        UsersService,
+        mockTypeormRepository(UserEntity, connection)
+      ],
+    }).compile();
 
     service = module.get<UsersService>(UsersService);
   });
@@ -40,4 +28,13 @@ describe('UsersService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should generate a jwt token when user credentials are correct', async () => {
+
+  })
+
+  it('should send an error when user tries to authenticate with invalid credentials', async () => {
+    
+  })
+
 });
