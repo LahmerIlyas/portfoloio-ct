@@ -1,4 +1,5 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
+import { FoodEntryEntity } from ".";
 import { BaseEntity } from "./base.entity";
 
 export enum UserRole {
@@ -31,4 +32,6 @@ export class UserEntity extends BaseEntity {
   @Column({ type: "enum",enum: UserRole, default: UserRole.USER })
   role: UserRole;
 
+  @OneToMany(type => FoodEntryEntity, entry => entry.user_id, {cascade: ['insert']})
+  entries: FoodEntryEntity[];
 }

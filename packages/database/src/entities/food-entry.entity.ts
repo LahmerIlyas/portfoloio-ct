@@ -1,4 +1,5 @@
-import { Column, Entity } from "typeorm";
+import { UserEntity } from './user.entity';
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { BaseEntity } from "./base.entity";
 
 @Entity('food_entry')
@@ -11,5 +12,12 @@ export class FoodEntryEntity extends BaseEntity {
 
   @Column('numeric', { nullable: false, name: 'calories_count' })
   calories_count: number;
+
+  @ManyToOne(type => UserEntity, user => user.entries, {nullable: false,})
+  @JoinColumn({ name: 'user_id' })
+  user: UserEntity;
+
+  @Column({name: 'user_id', nullable: false})
+  user_id: number;
 
 }
