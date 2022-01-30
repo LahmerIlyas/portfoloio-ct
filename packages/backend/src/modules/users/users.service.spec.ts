@@ -43,7 +43,6 @@ describe('UsersService', () => {
     expect(service).toBeDefined();
   });
 
-
   it('should create a valid jwt token for the provided user id', async () => {
     const { access_token } = await service.generateToken(1);
     expect(jwtService.decode(access_token)['id']).toBe(1);
