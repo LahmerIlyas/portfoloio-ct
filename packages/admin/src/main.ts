@@ -1,4 +1,4 @@
-import { clientDatabaseConfiguration } from '@toptal-calories-counter/database';
+import { clientDatabaseConfiguration, UserEntity, UserRole } from '@toptal-calories-counter/database';
 import * as express from 'express';
 import AdminJS from 'adminjs';
 import * as AdminJSExpress from '@adminjs/express';
@@ -7,6 +7,7 @@ import { resources } from './resources';
 import { validate } from 'class-validator';
 import { createConnection } from 'typeorm';
 import * as path from 'path';
+import * as bcrypt from 'bcrypt';
 
 Resource.validate = validate;
 AdminJS.registerAdapter({ Database: Database, Resource: Resource });
@@ -24,17 +25,17 @@ const bootstrapApp = async () => {
     rootPath: '/',
     resources: resources,
     branding: {
-      companyName: 'Product Analytica',
+      companyName: 'Toptal Calories Tracker',
       softwareBrothers: false,
       favicon: '/static/favicon.ico',
       logo: '/static/logo.webp',
       theme: {
         colors: {
-          primary100: '#ff6a1a',
-          primary80: '#ff8b4d',
-          primary60: '#ffac80',
-          primary40: '#ffcdb3',
-          primary20: '#ffeee5',
+          primary100: '#91C788',
+          primary80: '#8fc686',
+          primary60: '#afd6a8',
+          primary40: '#cfe7cb',
+          primary20: '#eff7ee',
         },
       },
     },
@@ -43,7 +44,19 @@ const bootstrapApp = async () => {
   const app = express();
   adminJs.watch();
   // @ts-ignore
-  const router = AdminJSExpress.buildRouter(adminJs);
+  const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
+      authenticate: async (email, password) => {
+        const user = await UserEntity.findOne({ where: {email} })
+        if (user && [UserRole.SUPER_ADMIN, UserRole.ADMIN].includes(user.role)) {
+          const matched = await bcrypt.compare(password, user.hashed_password)
+          if (matched) {
+            return user
+          }
+        }
+        return false
+      },
+      cookiePassword: 'some-secret',
+  });
   app.use(adminJs.options.rootPath, router);
   app.use('/static', express.static(path.join(__dirname, '..', 'assets')));
   app.listen(PORT, () => console.log(`AdminJS is under localhost:${PORT}`));
