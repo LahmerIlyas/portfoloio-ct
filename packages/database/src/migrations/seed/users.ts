@@ -7,7 +7,7 @@ function generateRandomHistory() {
 
     for (let i = 1; i <= 30; i++){
         entries.push({
-                calories_count: 100,
+                calories_count: i + 100,
                 food_name: 'salade',
                 taken_at: `2022-01-${i} 06:00:01+00`,
         })

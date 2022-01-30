@@ -67,7 +67,7 @@ const bootstrapApp = async () => {
   app.get('/', (req, res) =>{
     res.redirect('/admin')
   })
-
+  console.log(await fetchDashboardStatistics());
   app.listen(PORT, () => console.log(`AdminJS is under localhost:${PORT}`));
 };
 
