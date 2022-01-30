@@ -1,12 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Exclude, Expose } from "class-transformer";
 import { IsEmail, IsString, MinLength, IsOptional } from "class-validator";
+import { UniqueEmail } from "../../../decorators/unique-mail.decorator";
 
 
 @Exclude()
 export class RegisterDto {
     @Expose()
     @IsEmail()
+    @UniqueEmail()
     @ApiProperty()
     email: string;
 

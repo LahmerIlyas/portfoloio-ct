@@ -71,11 +71,6 @@ describe('UsersService', () => {
       const is_matched = bcrypt.compareSync(userPayload.password, user.hashed_password);
       expect(is_matched).toBe(true);    
     })
-
-    it('should not be able to register with the same email again', async () => {
-      expect(false).toBe(true);    
-    })
-
   });
 
 });
