@@ -1,5 +1,21 @@
 import { UserEntity, UserRole } from './../../entities/user.entity';
 import * as bcrypt from 'bcrypt';
+
+
+function generateRandomHistory() {
+    const entries = [];
+
+    for (let i = 1; i <= 30; i++){
+        entries.push({
+                calories_count: 100,
+                food_name: 'salade',
+                taken_at: `2022-01-${i} 06:00:01+00`,
+        })
+    }
+    console.log(entries)
+    return entries;
+}
+
 export const users = [
     {
         email: 'ilyaslahmer93@gmail.com',
@@ -7,13 +23,7 @@ export const users = [
         last_name: 'ilyas',
         role: UserRole.USER,
         hashed_password: bcrypt.hashSync('123456', 10),
-        entries: [
-            {
-                calories_count: 100,
-                food_name: 'salade',
-                taken_at: new Date().toISOString(),
-            },
-        ]
+        entries: generateRandomHistory()
     },
     {
         email: 'admin@gmail.com',

@@ -2,33 +2,22 @@ import 'chartjs-adapter-moment';
 import * as React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-export const WeeklyEntriesChart: React.FC = () => {
+type WeeklyEntriesChartProps = {
+  currentWeek: Array<any>;
+  previousWeek: Array<any>;
+}
+
+export const WeeklyEntriesChart: React.FC<WeeklyEntriesChartProps> = (props) => {
 const data = {
   datasets: [{
       label: 'This Week',
       backgroundColor: 'red',
-      data: [
-        { x: '12-01-2021', y: 10 },
-        { x: '13-01-2021', y: 12},
-        { x: '14-01-2021', y: 9 },
-        { x: '15-01-2021', y: 17 },
-        { x: '16-01-2021', y: 14 },
-        { x: '17-01-2021', y: 15 },
-        { x: '18-01-2021', y: 16 },
-      ]
+      data: props.currentWeek
   },
   {
     label: 'Previous week',
     backgroundColor: 'blue',
-    data: [
-        { x: '12-01-2021', y: 10 },
-        { x: '13-01-2021', y: 12},
-        { x: '14-01-2021', y: 9 },
-        { x: '15-01-2021', y: 17 },
-        { x: '16-01-2021', y: 14 },
-        { x: '17-01-2021', y: 15 },
-        { x: '18-01-2021', y: 16 },
-      ]
+    data: props.previousWeek
   }]
 };
 

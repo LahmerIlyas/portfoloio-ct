@@ -8,6 +8,7 @@ import { validate } from 'class-validator';
 import { createConnection } from 'typeorm';
 import * as path from 'path';
 import * as bcrypt from 'bcrypt';
+import { fetchDashboardStatistics } from './pages/dashboard/fetch-dashboard-statistics';
 
 Resource.validate = validate;
 AdminJS.registerAdapter({ Database: Database, Resource: Resource });
@@ -25,9 +26,7 @@ const bootstrapApp = async () => {
     rootPath: '/admin',
     resources: resources,
     dashboard: {
-      handler: async () => {
-
-      },
+      handler: fetchDashboardStatistics,
       component: AdminJS.bundle('./pages/dashboard/index.tsx')
     },
     branding: {
@@ -68,6 +67,7 @@ const bootstrapApp = async () => {
   app.get('/', (req, res) =>{
     res.redirect('/admin')
   })
+
   app.listen(PORT, () => console.log(`AdminJS is under localhost:${PORT}`));
 };
 

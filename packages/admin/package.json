@@ -11,21 +11,22 @@
   "dependencies": {
     "@adminjs/express": "^4.0.1",
     "@adminjs/typeorm": "^2.0.1",
+    "@toptal-calories-counter/database": "1.0.0",
     "adminjs": "^5.5.1",
     "chart.js": "^3.7.0",
     "chartjs-adapter-moment": "^1.0.0",
     "express-formidable": "^1.2.0",
     "express-session": "^1.17.2",
     "moment": "^2.29.1",
-    "react-chartjs-2": "^4.0.1",
     "pg": "^8.7.1",
+    "react-chartjs-2": "^4.0.1",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.41",
-    "@toptal-calories-counter/database": "1.0.0"
+    "typeorm": "^0.2.41"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.1",
+    "@types/moment": "^2.13.0",
     "@types/node": "^16.0.0",
     "@types/react-chartjs-2": "^2.5.7",
     "@types/supertest": "^2.0.11",
