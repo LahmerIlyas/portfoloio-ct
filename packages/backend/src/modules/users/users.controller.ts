@@ -4,10 +4,11 @@ import { LoginDto } from './dto/login.dto';
 import { Body, Controller, Get, Inject, Post, Req, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterDto } from './dto/register.dto';
-import { LocalAuthGuard } from 'src/guards/local.auth-guard';
+import { LocalAuthGuard } from '../../guards/local.auth-guard';
 import { AccessTokenSerializer } from './serializer/access-token.serializer';
 import { UserProfileSerializer } from './serializer/user-profile.serializer';
 import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
+import { User } from '../../decorators/user.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -46,7 +47,7 @@ export class UsersController {
         type: UserProfileSerializer,
     })
     @ApiBearerAuth()
-    public async getUserProfile(@Req() request): Promise<UserProfileSerializer> {
-        return request.user ;
+    public async getUserProfile(@User() user): Promise<UserProfileSerializer> {
+        return user ;
     }
 }
