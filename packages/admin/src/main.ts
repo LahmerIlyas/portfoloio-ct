@@ -22,7 +22,7 @@ const bootstrapApp = async () => {
   });
 
   const adminJs = new AdminJS({
-    rootPath: '/',
+    rootPath: '/admin',
     resources: resources,
     branding: {
       companyName: 'Toptal Calories Tracker',
@@ -59,6 +59,9 @@ const bootstrapApp = async () => {
   });
   app.use(adminJs.options.rootPath, router);
   app.use('/static', express.static(path.join(__dirname, '..', 'assets')));
+  app.get('/', (req, res) =>{
+    res.redirect('/admin')
+  })
   app.listen(PORT, () => console.log(`AdminJS is under localhost:${PORT}`));
 };
 
