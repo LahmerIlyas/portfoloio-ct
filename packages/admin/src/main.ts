@@ -24,6 +24,12 @@ const bootstrapApp = async () => {
   const adminJs = new AdminJS({
     rootPath: '/admin',
     resources: resources,
+    dashboard: {
+      handler: async () => {
+
+      },
+      component: AdminJS.bundle('./pages/dashboard/index.tsx')
+    },
     branding: {
       companyName: 'Toptal Calories Tracker',
       softwareBrothers: false,
