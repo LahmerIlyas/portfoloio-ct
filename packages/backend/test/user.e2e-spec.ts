@@ -89,4 +89,13 @@ describe('UserController (e2e)', () => {
         .expect('Hello World!');
     });
   })
+
+  describe('User Profile', () => {
+    it('should send the correct logged in user profile', () => {
+      return request(app.getHttpServer())
+        .post('/login')
+        .expect(200)
+        .expect('Hello World!');
+    });
+  })
 });

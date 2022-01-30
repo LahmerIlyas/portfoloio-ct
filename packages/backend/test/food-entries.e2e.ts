@@ -50,4 +50,29 @@ describe('FoodEntries (e2e)', () => {
       .expect(200)
       .expect('Hello World!');
   });
+
+  describe('Create Food entry', () => {
+    it('should be successfully created', () => {
+      return request(app.getHttpServer())
+        .post('/login')
+        .expect(200)
+        .expect('Hello World!');
+    });
+    it('should be assigned to the logged in user', () => {
+      return request(app.getHttpServer())
+        .post('/login')
+        .expect(200)
+        .expect('Hello World!');
+    });
+  })
+
+  describe('Get food entries', () => {
+    it('should return the logged in user entires', () => {
+      return request(app.getHttpServer())
+        .post('/login')
+        .expect(200)
+        .expect('Hello World!');
+    });
+  })
+
 });
