@@ -1,4 +1,4 @@
-import { Configuration } from 'src/core';
+import { Configuration } from '../../core';
 import { JwtModule } from '@nestjs/jwt';
 import { Logger, Module } from '@nestjs/common';
 import { FoodEntriesService } from './food-entries.service';

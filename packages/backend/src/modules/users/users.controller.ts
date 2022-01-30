@@ -10,7 +10,7 @@ import { UserProfileSerializer } from './serializer/user-profile.serializer';
 import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
 import { User } from '../../decorators/user.decorator';
 
-@Controller('users')
+@Controller('/')
 export class UsersController {
     @Inject(UsersService)
     public userService: UsersService;

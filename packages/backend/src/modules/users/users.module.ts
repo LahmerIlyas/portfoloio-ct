@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '@toptal-calories-counter/database';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { Configuration } from 'src/core';
+import { Configuration } from '../../core';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
