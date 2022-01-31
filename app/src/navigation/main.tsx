@@ -1,4 +1,4 @@
-import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
+import { CardStyleInterpolators, createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import {
     CreateFoodEntryScreen,
     HomeScreen,
@@ -24,7 +24,12 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export function AppSwitchNavigator() {
   return (
-    <Stack.Navigator initialRouteName='SplashScreen'>
+    <Stack.Navigator initialRouteName='SplashScreen' screenOptions={{
+      headerShown: false,
+      cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+      gestureEnabled: false,
+      gestureDirection: 'vertical',
+    }}>
       <Stack.Screen name="CreateFoodEntryScreen" component={CreateFoodEntryScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />

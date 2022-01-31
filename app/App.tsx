@@ -43,7 +43,7 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
-      <StatusBar hidden={true} />
+      <StatusBar style='dark' />
       <QueryClientProvider client={queryClient}>
         <AppContainer />
       </QueryClientProvider>
