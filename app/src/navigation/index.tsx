@@ -1,4 +1,4 @@
-import React, { useMemo,useContext } from 'react';
+import React, { useMemo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppSwitchNavigator } from './main';
 

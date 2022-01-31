@@ -24,7 +24,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export function AppSwitchNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName='SplashScreen'>
       <Stack.Screen name="CreateFoodEntryScreen" component={CreateFoodEntryScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
