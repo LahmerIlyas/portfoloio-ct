@@ -3,8 +3,8 @@
      input: './swagger-spec.json',
      output: {
        mode: 'tags-split',
-       target: '../client/petstore.ts',
-       schemas: '../client/model',
+       target: '../../app/src/api/generated/calories-tracker.ts',
+       schemas: '../../app/src/api/generated/model',
        client: 'react-query',
        mock: true,
      },
