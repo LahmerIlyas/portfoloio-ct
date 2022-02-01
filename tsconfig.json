@@ -17,8 +17,5 @@
         "forceConsistentCasingInFileNames": false,
         "noFallthroughCasesInSwitch": false,
         "outDir": "./lib"
-    },
-    "include": [
-        "./src"
-    ]
+    }
 }

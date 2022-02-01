@@ -8,12 +8,13 @@ type FormPasswordInputProps = {
 };
 
 export const FormPasswordInput: React.FC<FormPasswordInputProps> = (props) => {
-    const [field, { touched, error }, helpers] = useField<string>(props.field);
+    const [field, { touched, error, initialValue }, helpers] = useField<string>(props.field);
     return (
         <View style={{width: '100%',}}>
             <Text style={styles.title}>{props.title}</Text>
             <TextInput
                 style={styles.textInput}
+                defaultValue={initialValue}
                 onChangeText={helpers.setValue}
                 autoCapitalize="none"
                 autoCorrect={false}

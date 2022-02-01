@@ -1,14 +1,17 @@
-import { CardStyleInterpolators, createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
 import {
-    CreateFoodEntryScreen,
-    HomeScreen,
-    LoginScreen,
-    OnBoardingScreen,
-    RegisterScreen,
-    SplashScreen,
-    UserStatsScreen
+  CardStyleInterpolators,
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
+import {
+  CreateFoodEntryScreen,
+  HomeScreen,
+  LoginScreen,
+  OnBoardingScreen,
+  RegisterScreen,
+  SplashScreen,
+  UserStatsScreen,
 } from '../screens';
-
 
 export type RootStackParamList = {
   CreateFoodEntryScreen: undefined;
@@ -24,13 +27,19 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export function AppSwitchNavigator() {
   return (
-    <Stack.Navigator initialRouteName='SplashScreen' screenOptions={{
-      headerShown: false,
-      cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
-      gestureEnabled: false,
-      gestureDirection: 'vertical',
-    }}>
-      <Stack.Screen name="CreateFoodEntryScreen" component={CreateFoodEntryScreen} />
+    <Stack.Navigator
+      initialRouteName="CreateFoodEntryScreen"
+      screenOptions={{
+        headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
+        gestureEnabled: false,
+        gestureDirection: 'vertical',
+      }}
+    >
+      <Stack.Screen
+        name="CreateFoodEntryScreen"
+        component={CreateFoodEntryScreen}
+      />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen} />
@@ -41,10 +50,31 @@ export function AppSwitchNavigator() {
   );
 }
 
-export type CreateFoodEntryScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CreateFoodEntryScreen'>;
-export type HomeScreenScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HomeScreen'>;
-export type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LoginScreen'>;
-export type OnBoardingScreenScreenNavigationProp = StackNavigationProp<RootStackParamList, 'OnBoardingScreen'>;
-export type RegisterScreenNavigationProp = StackNavigationProp<RootStackParamList, 'RegisterScreen'>;
-export type SplashScreenScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SplashScreen'>;
-export type UserStatsScreenScreenNavigationProp = StackNavigationProp<RootStackParamList, 'UserStatsScreen'>;
+export type CreateFoodEntryScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'CreateFoodEntryScreen'
+>;
+export type HomeScreenScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'HomeScreen'
+>;
+export type LoginScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'LoginScreen'
+>;
+export type OnBoardingScreenScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'OnBoardingScreen'
+>;
+export type RegisterScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'RegisterScreen'
+>;
+export type SplashScreenScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'SplashScreen'
+>;
+export type UserStatsScreenScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'UserStatsScreen'
+>;

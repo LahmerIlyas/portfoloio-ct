@@ -11,7 +11,10 @@ export const LoginScreen: React.FC = (props) => {
     return (
         <View style={styles.container}>
             <Logo style={{marginBottom: 32}}/>
-            <Formik initialValues={{}} onSubmit={login} validationSchema={LoginFormValidationSchema}>
+            <Formik initialValues={{
+                email: 'ilyaslahmer93@gmail.com',
+                password: 'test',
+            }} onSubmit={login} validationSchema={LoginFormValidationSchema}>
                 <Fragment>
                 <FormTextInput title='Email' field='email'/>
                 <FormPasswordInput title='Password' field='password' />

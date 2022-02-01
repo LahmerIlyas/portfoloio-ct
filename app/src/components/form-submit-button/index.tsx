@@ -1,18 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, Pressable, StyleProp, ViewStyle,ActivityIndicator } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Pressable,
+  StyleProp,
+  ViewStyle,
+  ActivityIndicator,
+} from 'react-native';
 import { useFormikContext } from 'formik';
 
 interface FormSubmitButtonProps {
   title: string;
-  loading?:boolean,
+  loading?: boolean;
   style?: StyleProp<ViewStyle> | undefined;
 }
 
 export const FormSubmitButton: React.FC<FormSubmitButtonProps> = (props) => {
   const { handleSubmit } = useFormikContext();
   return (
-    <Pressable style={[styles.container, props.style]} onPress={handleSubmit}
-      android_ripple={{ radius: 100 }}>
+    <Pressable
+      style={[styles.container, props.style]}
+      onPress={handleSubmit}
+      android_ripple={{ radius: 100 }}
+    >
       <Text style={styles.title}>{props.title}</Text>
     </Pressable>
   );
@@ -26,11 +36,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 22,
     paddingVertical: 16,
     borderRadius: 3,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
-  title:{
-    fontSize:22,
-    color:'#FFFFFF',
+  title: {
+    fontSize: 22,
+    color: '#FFFFFF',
     fontFamily: 'Signika-Medium',
-  }
+  },
 });
