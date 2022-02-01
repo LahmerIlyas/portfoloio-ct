@@ -28,7 +28,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export function AppSwitchNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="CreateFoodEntryScreen"
+      initialRouteName="LoginScreen"
       screenOptions={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
