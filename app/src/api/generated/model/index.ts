@@ -7,3 +7,4 @@ export * from './foodEntryEntity';
 export * from './createFoodEntryDto';
 export * from './foodEntrySerializer';
 export * from './getManyBaseFoodEntriesControllerFoodEntryEntityParams';
+export * from './getFoodEntriesParams';

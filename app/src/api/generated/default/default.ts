@@ -28,7 +28,7 @@ import type {
   FoodEntrySerializer,
   CreateFoodEntryDto,
   GetManyFoodEntriesSerializer,
-  GetManyBaseFoodEntriesControllerFoodEntryEntityParams
+  GetFoodEntriesParams
 } from '.././model'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,7 +37,7 @@ T extends (...args: any) => Promise<any>
 > = T extends (...args: any) => Promise<infer R> ? R : any;
 
 
-export const usersControllerLogin = (
+export const login = (
     loginDto: LoginDto, options?: AxiosRequestConfig
  ): Promise<AxiosResponse<AccessTokenSerializer>> => {
     return axios.post(
@@ -48,24 +48,24 @@ export const usersControllerLogin = (
 
 
 
-    export const useUsersControllerLogin = <TError = AxiosError<unknown>,
+    export const useLogin = <TError = AxiosError<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<AsyncReturnType<typeof usersControllerLogin>, TError,{data: LoginDto}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<AsyncReturnType<typeof login>, TError,{data: LoginDto}, TContext>, axios?: AxiosRequestConfig}
 ) => {
       const {mutation: mutationOptions, axios: axiosOptions} = options || {}
 
       
 
 
-      const mutationFn: MutationFunction<AsyncReturnType<typeof usersControllerLogin>, {data: LoginDto}> = (props) => {
+      const mutationFn: MutationFunction<AsyncReturnType<typeof login>, {data: LoginDto}> = (props) => {
           const {data} = props || {};
 
-          return  usersControllerLogin(data,axiosOptions)
+          return  login(data,axiosOptions)
         }
 
-      return useMutation<AsyncReturnType<typeof usersControllerLogin>, TError, {data: LoginDto}, TContext>(mutationFn, mutationOptions)
+      return useMutation<AsyncReturnType<typeof login>, TError, {data: LoginDto}, TContext>(mutationFn, mutationOptions)
     }
-    export const usersControllerRegister = (
+    export const register = (
     registerDto: RegisterDto, options?: AxiosRequestConfig
  ): Promise<AxiosResponse<AccessTokenSerializer>> => {
     return axios.post(
@@ -76,24 +76,24 @@ export const usersControllerLogin = (
 
 
 
-    export const useUsersControllerRegister = <TError = AxiosError<unknown>,
+    export const useRegister = <TError = AxiosError<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<AsyncReturnType<typeof usersControllerRegister>, TError,{data: RegisterDto}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<AsyncReturnType<typeof register>, TError,{data: RegisterDto}, TContext>, axios?: AxiosRequestConfig}
 ) => {
       const {mutation: mutationOptions, axios: axiosOptions} = options || {}
 
       
 
 
-      const mutationFn: MutationFunction<AsyncReturnType<typeof usersControllerRegister>, {data: RegisterDto}> = (props) => {
+      const mutationFn: MutationFunction<AsyncReturnType<typeof register>, {data: RegisterDto}> = (props) => {
           const {data} = props || {};
 
-          return  usersControllerRegister(data,axiosOptions)
+          return  register(data,axiosOptions)
         }
 
-      return useMutation<AsyncReturnType<typeof usersControllerRegister>, TError, {data: RegisterDto}, TContext>(mutationFn, mutationOptions)
+      return useMutation<AsyncReturnType<typeof register>, TError, {data: RegisterDto}, TContext>(mutationFn, mutationOptions)
     }
-    export const usersControllerGetUserProfile = (
+    export const me = (
      options?: AxiosRequestConfig
  ): Promise<AxiosResponse<UserProfileSerializer>> => {
     return axios.get(
@@ -102,23 +102,23 @@ export const usersControllerLogin = (
   }
 
 
-export const getUsersControllerGetUserProfileQueryKey = () => [`/me`];
+export const getMeQueryKey = () => [`/me`];
 
     
-export const useUsersControllerGetUserProfile = <TData = AsyncReturnType<typeof usersControllerGetUserProfile>, TError = AxiosError<unknown>>(
-  options?: { query?:UseQueryOptions<AsyncReturnType<typeof usersControllerGetUserProfile>, TError, TData>, axios?: AxiosRequestConfig}
+export const useMe = <TData = AsyncReturnType<typeof me>, TError = AxiosError<unknown>>(
+  options?: { query?:UseQueryOptions<AsyncReturnType<typeof me>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions, axios: axiosOptions} = options || {}
 
-  const queryKey = queryOptions?.queryKey ?? getUsersControllerGetUserProfileQueryKey();
+  const queryKey = queryOptions?.queryKey ?? getMeQueryKey();
 
   
 
-  const queryFn: QueryFunction<AsyncReturnType<typeof usersControllerGetUserProfile>> = () => usersControllerGetUserProfile(axiosOptions);
+  const queryFn: QueryFunction<AsyncReturnType<typeof me>> = () => me(axiosOptions);
 
-  const query = useQuery<AsyncReturnType<typeof usersControllerGetUserProfile>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<AsyncReturnType<typeof me>, TError, TData>(queryKey, queryFn, queryOptions)
 
   return {
     queryKey,
@@ -126,10 +126,7 @@ export const useUsersControllerGetUserProfile = <TData = AsyncReturnType<typeof 
   }
 }
 
-/**
- * @summary Create a single FoodEntryEntity
- */
-export const createOneBaseFoodEntriesControllerFoodEntryEntity = (
+export const createFoodEntry = (
     createFoodEntryDto: CreateFoodEntryDto, options?: AxiosRequestConfig
  ): Promise<AxiosResponse<FoodEntrySerializer>> => {
     return axios.post(
@@ -140,28 +137,25 @@ export const createOneBaseFoodEntriesControllerFoodEntryEntity = (
 
 
 
-    export const useCreateOneBaseFoodEntriesControllerFoodEntryEntity = <TError = AxiosError<unknown>,
+    export const useCreateFoodEntry = <TError = AxiosError<unknown>,
     
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<AsyncReturnType<typeof createOneBaseFoodEntriesControllerFoodEntryEntity>, TError,{data: CreateFoodEntryDto}, TContext>, axios?: AxiosRequestConfig}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<AsyncReturnType<typeof createFoodEntry>, TError,{data: CreateFoodEntryDto}, TContext>, axios?: AxiosRequestConfig}
 ) => {
       const {mutation: mutationOptions, axios: axiosOptions} = options || {}
 
       
 
 
-      const mutationFn: MutationFunction<AsyncReturnType<typeof createOneBaseFoodEntriesControllerFoodEntryEntity>, {data: CreateFoodEntryDto}> = (props) => {
+      const mutationFn: MutationFunction<AsyncReturnType<typeof createFoodEntry>, {data: CreateFoodEntryDto}> = (props) => {
           const {data} = props || {};
 
-          return  createOneBaseFoodEntriesControllerFoodEntryEntity(data,axiosOptions)
+          return  createFoodEntry(data,axiosOptions)
         }
 
-      return useMutation<AsyncReturnType<typeof createOneBaseFoodEntriesControllerFoodEntryEntity>, TError, {data: CreateFoodEntryDto}, TContext>(mutationFn, mutationOptions)
+      return useMutation<AsyncReturnType<typeof createFoodEntry>, TError, {data: CreateFoodEntryDto}, TContext>(mutationFn, mutationOptions)
     }
-    /**
- * @summary Retrieve multiple FoodEntryEntities
- */
-export const getManyBaseFoodEntriesControllerFoodEntryEntity = (
-    params?: GetManyBaseFoodEntriesControllerFoodEntryEntityParams, options?: AxiosRequestConfig
+    export const getFoodEntries = (
+    params?: GetFoodEntriesParams, options?: AxiosRequestConfig
  ): Promise<AxiosResponse<GetManyFoodEntriesSerializer>> => {
     return axios.get(
       `/food-entries`,{
@@ -171,23 +165,23 @@ export const getManyBaseFoodEntriesControllerFoodEntryEntity = (
   }
 
 
-export const getGetManyBaseFoodEntriesControllerFoodEntryEntityQueryKey = (params?: GetManyBaseFoodEntriesControllerFoodEntryEntityParams,) => [`/food-entries`, ...(params ? [params]: [])];
+export const getGetFoodEntriesQueryKey = (params?: GetFoodEntriesParams,) => [`/food-entries`, ...(params ? [params]: [])];
 
     
-export const useGetManyBaseFoodEntriesControllerFoodEntryEntity = <TData = AsyncReturnType<typeof getManyBaseFoodEntriesControllerFoodEntryEntity>, TError = AxiosError<unknown>>(
- params?: GetManyBaseFoodEntriesControllerFoodEntryEntityParams, options?: { query?:UseQueryOptions<AsyncReturnType<typeof getManyBaseFoodEntriesControllerFoodEntryEntity>, TError, TData>, axios?: AxiosRequestConfig}
+export const useGetFoodEntries = <TData = AsyncReturnType<typeof getFoodEntries>, TError = AxiosError<unknown>>(
+ params?: GetFoodEntriesParams, options?: { query?:UseQueryOptions<AsyncReturnType<typeof getFoodEntries>, TError, TData>, axios?: AxiosRequestConfig}
 
   ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
 
   const {query: queryOptions, axios: axiosOptions} = options || {}
 
-  const queryKey = queryOptions?.queryKey ?? getGetManyBaseFoodEntriesControllerFoodEntryEntityQueryKey(params);
+  const queryKey = queryOptions?.queryKey ?? getGetFoodEntriesQueryKey(params);
 
   
 
-  const queryFn: QueryFunction<AsyncReturnType<typeof getManyBaseFoodEntriesControllerFoodEntryEntity>> = () => getManyBaseFoodEntriesControllerFoodEntryEntity(params, axiosOptions);
+  const queryFn: QueryFunction<AsyncReturnType<typeof getFoodEntries>> = () => getFoodEntries(params, axiosOptions);
 
-  const query = useQuery<AsyncReturnType<typeof getManyBaseFoodEntriesControllerFoodEntryEntity>, TError, TData>(queryKey, queryFn, queryOptions)
+  const query = useQuery<AsyncReturnType<typeof getFoodEntries>, TError, TData>(queryKey, queryFn, queryOptions)
 
   return {
     queryKey,
