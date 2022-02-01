@@ -21,17 +21,7 @@ export const HomeScreen: React.FC = (props) => {
 
   return (
     <View style={styles.container}>
-      <FloatingAction
-        actions={[
-          {
-            text: 'Create',
-            icon: <MaterialIcons name="add" color={'white'} size={24} />,
-            name: 'bt_accessibility',
-          },
-        ]}
-        overrideWithAction={true}
-        onPressItem={goToCreateFoodEntryScreen}
-      />
+
       <Text style={styles.helloTitle}>Hello Shambhavi,</Text>
       <Text style={styles.subtitle}>Find, track and eat heathy food.</Text>
       <Banner style={styles.banner} />
@@ -51,6 +41,17 @@ export const HomeScreen: React.FC = (props) => {
         //ListFooterComponent={!done && <FlatListLoadingMoreSpinner />}
         //keyExtractor={(item) => item.id}
         renderItem={renderItem}
+      />
+      <FloatingAction
+        actions={[
+          {
+            text: 'Create',
+            icon: <MaterialIcons name="add" color={'white'} size={24} />,
+            name: 'bt_accessibility',
+          },
+        ]}
+        overrideWithAction={true}
+        onPressItem={goToCreateFoodEntryScreen}
       />
     </View>
   );
