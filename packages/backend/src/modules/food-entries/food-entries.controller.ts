@@ -1,3 +1,6 @@
+import { GetManyMonthlySpendingSerializer } from './serializer/monthly-spending.serializer';
+import { GetManyDailyCalorieSerializer } from './serializer/daily-calorie.serializer';
+import { SerializerInterceptor } from './../../interceptors/serializer.interceptor';
 import { JwtAuthGuard } from './../../guards/jwt.auth-guard';
 import { Controller, Get, Inject, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import {
@@ -86,7 +89,12 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @ApiOperation({ operationId: 'getMonthlySpending' })
   @UseInterceptors(CrudRequestInterceptor)
   @UsePipes(new ValidationPipe({ transform: true }))
+  @UseInterceptors(new SerializerInterceptor(GetManyMonthlySpendingSerializer))
   @Get('monthly-spending')
+  @ApiOkResponse({
+    description: 'Get user profile.',
+    type: GetManyMonthlySpendingSerializer,
+  })
   @ApiQuery({ name: 'page', type: 'number', required: false })
   @ApiQuery({ name: 'sort', type: 'string', isArray: true, required: false })
   @ApiQuery({ name: 'filter', type: 'string', isArray: true, required: false })
@@ -101,6 +109,11 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @UseInterceptors(CrudRequestInterceptor)
   @UsePipes(new ValidationPipe({ transform: true }))
   @Get('daily-calories')
+  @UseInterceptors(new SerializerInterceptor(GetManyDailyCalorieSerializer))
+  @ApiOkResponse({
+    description: 'Get user profile.',
+    type: GetManyDailyCalorieSerializer,
+  })
   @ApiQuery({ name: 'page', type: 'number', required: false })
   @ApiQuery({ name: 'sort', type: 'string', isArray: true, required: false })
   @ApiQuery({ name: 'filter', type: 'string', isArray: true, required: false })

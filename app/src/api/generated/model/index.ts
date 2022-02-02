@@ -9,3 +9,7 @@ export * from './foodEntryEntity';
 export * from './foodEntrySerializer';
 export * from './getMonthlySpendingParams';
 export * from './getDailyCaloriesParams';
+export * from './monthlySpendingSerializer';
+export * from './getManyMonthlySpendingSerializer';
+export * from './dailyCalorieSerializer';
+export * from './getManyDailyCalorieSerializer';

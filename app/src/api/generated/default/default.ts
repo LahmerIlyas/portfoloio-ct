@@ -32,7 +32,9 @@ import type {
   CreateFoodEntryDto,
   GetManyFoodEntriesSerializer,
   GetFoodEntriesParams,
+  GetManyMonthlySpendingSerializer,
   GetMonthlySpendingParams,
+  GetManyDailyCalorieSerializer,
   GetDailyCaloriesParams
 } from '.././model'
 
@@ -238,7 +240,7 @@ export const useGetFoodEntries = <TData = AsyncReturnType<typeof getFoodEntries>
 
 export const getMonthlySpending = (
     params?: GetMonthlySpendingParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
+ ): Promise<AxiosResponse<GetManyMonthlySpendingSerializer>> => {
     return axios.get(
       `/food-entries/monthly-spending`,{
         params,
@@ -294,7 +296,7 @@ export const useGetMonthlySpending = <TData = AsyncReturnType<typeof getMonthlyS
 
 export const getDailyCalories = (
     params?: GetDailyCaloriesParams, options?: AxiosRequestConfig
- ): Promise<AxiosResponse<void>> => {
+ ): Promise<AxiosResponse<GetManyDailyCalorieSerializer>> => {
     return axios.get(
       `/food-entries/daily-calories`,{
         params,
