@@ -13,7 +13,10 @@ export class FoodEntryEntity extends BaseEntity {
   @Column('numeric', { nullable: false, name: 'calories_count' })
   calories_count: number;
 
-  @ManyToOne(type => UserEntity, user => user.entries, {nullable: false,})
+  @Column('numeric', { nullable: false, name: 'price' })
+  price: number;
+
+  @ManyToOne(type => UserEntity, user => user.entries, { nullable: false, })
   @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 

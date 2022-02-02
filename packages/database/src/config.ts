@@ -1,20 +1,25 @@
-import 'dotenv/config'
+import 'dotenv/config';
 import { ConnectionOptions } from 'typeorm';
-import {FoodEntryEntity, UserEntity} from './entities';
+import {
+  FoodEntryEntity,
+  UserEntity,
+  DailyCalories,
+  MonthlySpending,
+} from './entities';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 export const clientDatabaseConfiguration = {
-    type: 'postgres',
-    url: process.env.POSTGRES_URI || 'postgres://root:root@127.0.0.1:5432/root',
-    entities: [FoodEntryEntity, UserEntity],
-    synchronize: false,
-    migrationsRun: false,
-    logging: 'all',
-    extra: {
-      ssl: false,
-    },
-} as ConnectionOptions
+  type: 'postgres',
+  url: process.env.POSTGRES_URI || 'postgres://root:root@127.0.0.1:5432/root',
+  entities: [FoodEntryEntity, UserEntity, DailyCalories, MonthlySpending],
+  synchronize: false,
+  migrationsRun: false,
+  logging: 'all',
+  extra: {
+    ssl: false,
+  },
+} as ConnectionOptions;
 
 export const DatabaseConfiguration = {
   ...clientDatabaseConfiguration,
@@ -29,4 +34,4 @@ export const DatabaseConfiguration = {
   cli: {
     migrationsDir: 'src/migrations',
   },
-}
+};
