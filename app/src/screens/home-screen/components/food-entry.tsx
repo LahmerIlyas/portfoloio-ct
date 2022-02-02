@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { FoodEntrySerializer } from '../../../api';
 import FoodEntryIcon from './food-entry-icon';
 
-export const FoodEntry: React.FC = (props) => {
+type FoodEntry = FoodEntrySerializer & {};
+
+export const FoodEntry: React.FC<FoodEntrySerializer> = (props) => {
   return (
     <View style={styles.container}>
       <FoodEntryIcon style={styles.icon} />

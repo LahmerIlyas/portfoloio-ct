@@ -6,7 +6,7 @@ export const FlatListLoadingMoreSpinner: React.FC = () => {
     <View
       style={{ height: 80, alignItems: 'center', justifyContent: 'center' }}
     >
-      <ActivityIndicator size={'large'} color={'#1A237E'} />
+      <ActivityIndicator size={'large'} color={'#91C788'} />
     </View>
   );
 }

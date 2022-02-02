@@ -24,6 +24,7 @@ import {
   },
   query: {
     alwaysPaginate: true,
+    limit: 10,
   },
   dto: {
     create: CreateFoodEntryDto,

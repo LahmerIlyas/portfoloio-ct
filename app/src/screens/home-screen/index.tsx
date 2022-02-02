@@ -1,47 +1,70 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { View, FlatList, RefreshControl, StyleSheet, Text } from 'react-native';
 import { FloatingAction } from 'react-native-floating-action';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { HomeScreenScreenNavigationProp } from '../../navigation';
 import Banner from './components/banner';
-import { FlatListLoadingMoreSpinner } from '../../components';
 import { FoodEntry } from './components/food-entry';
+import { useUserFoodEntries } from './useUserFoodEntries';
+import { FoodEntrySerializer } from '../../api';
+import {
+  FlatListFullscreenLoadingSpinner,
+  FlatListLoadingMoreSpinner,
+} from '../../components';
 
 export const HomeScreen: React.FC = (props) => {
+  const {
+    data,
+    isFetching,
+    isRefetching,
+    refetch,
+    isLoadingMore,
+    fetchNextPage,
+    isDone,
+  } = useUserFoodEntries();
   const navigation = useNavigation<HomeScreenScreenNavigationProp>();
-
+  console.log('rerender');
   const goToCreateFoodEntryScreen = useCallback(() => {
     navigation.navigate('CreateFoodEntryScreen');
   }, []);
 
-  const renderItem = useCallback(() => {
-    return <FoodEntry />;
+  const renderItem = useCallback((entry: FoodEntrySerializer) => {
+    return <FoodEntry {...entry} />;
   }, []);
 
+  console.log({
+    isFetching,
+    isRefetching,
+    refetch,
+    isLoadingMore,
+    fetchNextPage,
+  })
   return (
     <View style={styles.container}>
-
       <Text style={styles.helloTitle}>Hello Shambhavi,</Text>
       <Text style={styles.subtitle}>Find, track and eat heathy food.</Text>
       <Banner style={styles.banner} />
-      <FlatList
-        contentContainerStyle={{ paddingBottom: 16, paddingHorizontal: 12 }}
-        removeClippedSubviews={false}
-        maxToRenderPerBatch={1}
-        updateCellsBatchingPeriod={20}
-        initialNumToRender={0}
-        showsVerticalScrollIndicator={false}
-        data={[{}, {}, {}]}
-        //refreshControl={
-        //  <RefreshControl refreshing={isRefreshing} onRefresh={refreshOffers} />
-        //}
-        //onEndReached={loadMoreOffers}
-        //onEndReachedThreshold={5}
-        //ListFooterComponent={!done && <FlatListLoadingMoreSpinner />}
-        //keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-      />
+      {(isFetching || isRefetching) && <FlatListFullscreenLoadingSpinner />}
+      {!(isFetching || isRefetching) && (
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 16, paddingHorizontal: 12 }}
+          removeClippedSubviews={false}
+          maxToRenderPerBatch={1}
+          updateCellsBatchingPeriod={20}
+          initialNumToRender={0}
+          showsVerticalScrollIndicator={false}
+          data={data}
+          refreshControl={
+            <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+          }
+          onEndReached={fetchNextPage}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
+          //keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+        />
+      )}
       <FloatingAction
         actions={[
           {
