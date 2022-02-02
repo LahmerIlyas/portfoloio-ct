@@ -1,6 +1,5 @@
 import { FoodEntryEntity } from './food-entry.entity';
 import { Connection, ViewColumn, ViewEntity } from 'typeorm';
-import { BaseEntity } from './base.entity';
 
 @ViewEntity({
   expression: (connection: Connection) =>
@@ -13,7 +12,7 @@ import { BaseEntity } from './base.entity';
       .groupBy('entry.taken_at::date')
       .orderBy('entry.taken_at::date', 'DESC'),
 })
-export class DailyCalories extends BaseEntity {
+export class DailyCalories {
   @ViewColumn()
   user_id: number;
 

@@ -17,24 +17,20 @@ describe('FoodEntriesController', () => {
 
   beforeAll(async () => {
     connection = await mockDatabaseConnection();
-    foodEntryRepository = connection.getRepository<FoodEntryEntity>('FoodEntryEntity');
-  })
-  
+    foodEntryRepository =
+      connection.getRepository<FoodEntryEntity>('FoodEntryEntity');
+  });
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-          PassportModule,
-          JwtModule.register(Configuration.jwt),
-      ],
+      imports: [PassportModule, JwtModule.register(Configuration.jwt)],
       providers: [
         FoodEntriesService,
         mockTypeormRepository(FoodEntryEntity, connection),
         mockTypeormRepository(UserEntity, connection),
-        Logger
+        Logger,
       ],
-      controllers: [
-        FoodEntriesController
-      ],
+      controllers: [FoodEntriesController],
     }).compile();
 
     controller = module.get<FoodEntriesController>(FoodEntriesController);

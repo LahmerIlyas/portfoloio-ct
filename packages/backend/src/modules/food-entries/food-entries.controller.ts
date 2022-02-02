@@ -1,10 +1,11 @@
 import { JwtAuthGuard } from './../../guards/jwt.auth-guard';
-import { Controller, UseGuards } from '@nestjs/common';
+import { Controller, Get, Inject, UseGuards, UseInterceptors } from '@nestjs/common';
 import {
   Crud,
   CrudAuth,
   CrudController,
   CrudRequest,
+  CrudRequestInterceptor,
   Override,
   ParsedBody,
   ParsedRequest,
@@ -17,6 +18,8 @@ import {
   FoodEntrySerializer,
   GetManyFoodEntriesSerializer,
 } from './serializer/food-entry.serializer';
+import { DailyCaloriesService } from './daily-calories.service';
+import { MonthlySpendingService } from './monthly-spending.service';
 
 @Crud({
   model: {
@@ -25,7 +28,6 @@ import {
   query: {
     alwaysPaginate: true,
     limit: 10,
-    sort: [{ field: 'created_at', order: 'DESC' }],
   },
   dto: {
     create: CreateFoodEntryDto,
@@ -50,7 +52,14 @@ import {
 })
 @Controller('food-entries')
 export class FoodEntriesController implements CrudController<FoodEntryEntity> {
-  constructor(public service: FoodEntriesService) {}
+  @Inject(FoodEntriesService)
+  public service: FoodEntriesService;
+
+  @Inject(DailyCaloriesService)
+  public dailyCaloriesService: DailyCaloriesService;
+
+  @Inject(MonthlySpendingService)
+  public monthlySpendingService: MonthlySpendingService;
 
   @Override()
   @UseGuards(JwtAuthGuard)
@@ -69,5 +78,25 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @ApiOperation({ operationId: 'getFoodEntries' })
   getMany(@ParsedRequest() req: CrudRequest) {
     return this.service.getMany(req);
+  }
+
+  @Override()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ operationId: 'getMonthlySpending' })
+  @UseInterceptors(CrudRequestInterceptor)
+  @Get('monthly-spending')
+  async getMonthlySpending(@ParsedRequest() req: CrudRequest) {
+    return await this.monthlySpendingService.getMany(req);
+  }
+
+  @Override()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ operationId: 'getDailyCalories' })
+  @UseInterceptors(CrudRequestInterceptor)
+  @Get('daily-calories')
+  async getDailyCalories(@ParsedRequest() req: CrudRequest) {
+    return this.dailyCaloriesService.getMany(req);
   }
 }

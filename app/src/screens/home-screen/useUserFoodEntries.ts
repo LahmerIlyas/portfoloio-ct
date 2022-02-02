@@ -11,7 +11,9 @@ export function useUserFoodEntries() {
     isFetchingNextPage,
     hasNextPage,
   } = useGetFoodEntriesInfinite(
-    {},
+    {
+      sort: ['created_at,DESC']
+    },
     {
       query: {
         getNextPageParam: (lastPage) => {
