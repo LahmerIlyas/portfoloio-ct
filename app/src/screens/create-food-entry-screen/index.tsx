@@ -5,18 +5,27 @@ import {
   FormSubmitButton,
   FormTextInput,
   FormNumberInput,
-  FormDateTimeInput
+  FormDateTimeInput,
 } from '../../components';
 import Logo from './components/logo';
+import { CreateFoodEntryValidationSchema } from './schema';
+import { useCreateFoodEntry } from './use-create-food-entry';
 
 export const CreateFoodEntryScreen: React.FC = (props) => {
+  const { createFoodEntry } = useCreateFoodEntry();
+
   return (
     <ScrollView style={styles.container}>
       <Logo style={styles.logo} />
-      <Formik initialValues={{}} onSubmit={() => {}}>
+      <Formik
+        initialValues={{}}
+        onSubmit={createFoodEntry}
+        validationSchema={CreateFoodEntryValidationSchema}
+        validateOnMount={false}
+      >
         <Fragment>
           <FormNumberInput
-            field="calories"
+            field="calories_count"
             title="Calories Count"
             placeholder="Number of calories"
           />
@@ -30,7 +39,7 @@ export const CreateFoodEntryScreen: React.FC = (props) => {
             title="Price"
             placeholder="The price of the food"
           />
-          <FormDateTimeInput field="date" title="Date" />
+          <FormDateTimeInput field="taken_at" title="Date" />
           <FormSubmitButton
             title="Create Entry"
             style={{ marginTop: 'auto' }}

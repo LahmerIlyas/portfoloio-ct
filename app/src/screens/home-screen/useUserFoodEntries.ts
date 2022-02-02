@@ -1,9 +1,9 @@
+import { useCallback } from 'react';
 import { FoodEntrySerializer, useGetFoodEntriesInfinite } from '../../api';
 
 export function useUserFoodEntries() {
   const {
     data,
-    status,
     refetch,
     isFetching,
     isRefetching,
@@ -23,6 +23,24 @@ export function useUserFoodEntries() {
     },
   );
 
+  const loadMore = () => {
+    if (hasNextPage && !isFetchingNextPage && !isFetching) {
+      console.log({
+        isFetching,
+        data: data?.pages.map((page) => page.data),
+        flat:
+          (data?.pages
+            ?.map((page) => page?.data?.data || [])
+            .flat() as any as FoodEntrySerializer[]) ||
+          ([] as FoodEntrySerializer[]),
+        isRefetching,
+        isFetchingNextPage,
+        hasNextPage,
+      });
+      fetchNextPage();
+    }
+  };
+
   return {
     data:
       (data?.pages
@@ -34,6 +52,6 @@ export function useUserFoodEntries() {
     isDone: !hasNextPage,
     refetch,
     isRefetching: isRefetching && !isFetchingNextPage,
-    fetchNextPage: () => hasNextPage && !isFetchingNextPage && fetchNextPage(),
+    loadMore,
   };
 }

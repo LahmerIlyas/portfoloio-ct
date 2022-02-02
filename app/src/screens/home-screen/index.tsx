@@ -20,11 +20,11 @@ export const HomeScreen: React.FC = (props) => {
     isRefetching,
     refetch,
     isLoadingMore,
-    fetchNextPage,
+    loadMore,
     isDone,
   } = useUserFoodEntries();
   const navigation = useNavigation<HomeScreenScreenNavigationProp>();
-  console.log('rerender');
+
   const goToCreateFoodEntryScreen = useCallback(() => {
     navigation.navigate('CreateFoodEntryScreen');
   }, []);
@@ -33,13 +33,6 @@ export const HomeScreen: React.FC = (props) => {
     return <FoodEntry {...item} />;
   }, []);
 
-  console.log({
-    isFetching,
-    isRefetching,
-    refetch,
-    isLoadingMore,
-    fetchNextPage,
-  })
   return (
     <View style={styles.container}>
       <Text style={styles.helloTitle}>Hello Shambhavi,</Text>
@@ -50,18 +43,16 @@ export const HomeScreen: React.FC = (props) => {
         <FlatList
           contentContainerStyle={{ paddingBottom: 16, paddingHorizontal: 12 }}
           removeClippedSubviews={false}
-          maxToRenderPerBatch={1}
-          updateCellsBatchingPeriod={20}
           initialNumToRender={0}
           showsVerticalScrollIndicator={false}
           data={data}
           refreshControl={
             <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
           }
-          onEndReached={fetchNextPage}
-          onEndReachedThreshold={0.5}
+          onEndReached={loadMore}
+          onEndReachedThreshold={1}
           ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
-          //keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
         />
       )}

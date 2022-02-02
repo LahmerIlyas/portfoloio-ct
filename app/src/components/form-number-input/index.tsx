@@ -19,7 +19,7 @@ export const FormNumberInput: React.FC<FormNumberInputProps> = (props) => {
         keyboardType="numeric"
         defaultValue={initialValue}
         style={styles.textInput}
-        onChangeText={helpers.setValue}
+        onChangeText={(value) => helpers.setValue(parseInt(value))}
         placeholder={props.placeholder}
       />
       {touched && error && <Text style={styles.error}>{error}</Text>}

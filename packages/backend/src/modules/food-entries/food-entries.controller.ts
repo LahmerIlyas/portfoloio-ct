@@ -25,6 +25,7 @@ import {
   query: {
     alwaysPaginate: true,
     limit: 10,
+    sort: [{ field: 'created_at', order: 'DESC' }],
   },
   dto: {
     create: CreateFoodEntryDto,

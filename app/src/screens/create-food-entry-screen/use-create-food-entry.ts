@@ -1,21 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
-import { CreateFoodEntryDto } from './../../../../packages/backend/src/modules/food-entries/dto/create-food-entry.dto';
 import { useCallback } from 'react';
-import { useCreateFoodEntry as useAction } from '../../api';
+import { CreateFoodEntryDto, useCreateFoodEntry as useAction } from '../../api';
 import { CreateFoodEntryScreenNavigationProp } from '../../navigation';
+import { useUserFoodEntries } from '../home-screen/useUserFoodEntries';
 
 export function useCreateFoodEntry() {
   const { mutateAsync } = useAction();
   const navigation = useNavigation<CreateFoodEntryScreenNavigationProp>();
+  const { refetch } = useUserFoodEntries();
   const createFoodEntry = useCallback(async (values: CreateFoodEntryDto) => {
+    console.log('creteFoodEntry', values);
     try {
-      const { data } = await mutateAsync({
-        data: values,
+      await mutateAsync({
+        data: { ...values, user_id: 0 },
       });
-      console.log(data);
+      refetch();
       navigation.goBack();
-    } catch (error) {
-      console.log(JSON.stringify(error));
+    } catch (ex) {
+      console.log(ex);
     }
   }, []);
 
