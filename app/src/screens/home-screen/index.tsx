@@ -29,8 +29,8 @@ export const HomeScreen: React.FC = (props) => {
     navigation.navigate('CreateFoodEntryScreen');
   }, []);
 
-  const renderItem = useCallback((entry: FoodEntrySerializer) => {
-    return <FoodEntry {...entry} />;
+  const renderItem = useCallback(({ item }) => {
+    return <FoodEntry {...item} />;
   }, []);
 
   console.log({

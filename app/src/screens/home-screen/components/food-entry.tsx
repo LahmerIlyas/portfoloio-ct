@@ -10,9 +10,9 @@ export const FoodEntry: React.FC<FoodEntrySerializer> = (props) => {
     <View style={styles.container}>
       <FoodEntryIcon style={styles.icon} />
       <View>
-        <Text style={styles.caloriesCount}>145 Cal</Text>
-        <Text style={styles.foodName}>Chicken with tomato</Text>
-        <Text style={styles.date}>23-02-2022</Text>
+        <Text style={styles.caloriesCount}>{props.calories_count} Cal</Text>
+        <Text style={styles.foodName}>{props.food_name}</Text>
+        <Text style={styles.date}>{props.taken_at.split('T')[0]}</Text>
       </View>
     </View>
   );
