@@ -7,3 +7,5 @@ export * from './registerDto';
 export * from './getFoodEntriesParams';
 export * from './foodEntryEntity';
 export * from './foodEntrySerializer';
+export * from './getMonthlySpendingParams';
+export * from './getDailyCaloriesParams';

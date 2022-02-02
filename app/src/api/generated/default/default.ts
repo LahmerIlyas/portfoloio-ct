@@ -31,7 +31,9 @@ import type {
   FoodEntrySerializer,
   CreateFoodEntryDto,
   GetManyFoodEntriesSerializer,
-  GetFoodEntriesParams
+  GetFoodEntriesParams,
+  GetMonthlySpendingParams,
+  GetDailyCaloriesParams
 } from '.././model'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -227,6 +229,118 @@ export const useGetFoodEntries = <TData = AsyncReturnType<typeof getFoodEntries>
   const queryFn: QueryFunction<AsyncReturnType<typeof getFoodEntries>> = () => getFoodEntries(params, axiosOptions);
 
   const query = useQuery<AsyncReturnType<typeof getFoodEntries>, TError, TData>(queryKey, queryFn, queryOptions)
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+export const getMonthlySpending = (
+    params?: GetMonthlySpendingParams, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.get(
+      `/food-entries/monthly-spending`,{
+        params,
+    ...options}
+    );
+  }
+
+
+export const getGetMonthlySpendingQueryKey = (params?: GetMonthlySpendingParams,) => [`/food-entries/monthly-spending`, ...(params ? [params]: [])];
+
+    
+export const useGetMonthlySpendingInfinite = <TData = AsyncReturnType<typeof getMonthlySpending>, TError = AxiosError<unknown>>(
+ params?: GetMonthlySpendingParams, options?: { query?:UseInfiniteQueryOptions<AsyncReturnType<typeof getMonthlySpending>, TError, TData>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions, axios: axiosOptions} = options || {}
+
+  const queryKey = queryOptions?.queryKey ?? getGetMonthlySpendingQueryKey(params);
+
+  
+
+  const queryFn: QueryFunction<AsyncReturnType<typeof getMonthlySpending>> = ({ pageParam }) => getMonthlySpending({ page: pageParam, ...params }, axiosOptions);
+
+  const query = useInfiniteQuery<AsyncReturnType<typeof getMonthlySpending>, TError, TData>(queryKey, queryFn, queryOptions)
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+export const useGetMonthlySpending = <TData = AsyncReturnType<typeof getMonthlySpending>, TError = AxiosError<unknown>>(
+ params?: GetMonthlySpendingParams, options?: { query?:UseQueryOptions<AsyncReturnType<typeof getMonthlySpending>, TError, TData>, axios?: AxiosRequestConfig}
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions, axios: axiosOptions} = options || {}
+
+  const queryKey = queryOptions?.queryKey ?? getGetMonthlySpendingQueryKey(params);
+
+  
+
+  const queryFn: QueryFunction<AsyncReturnType<typeof getMonthlySpending>> = () => getMonthlySpending(params, axiosOptions);
+
+  const query = useQuery<AsyncReturnType<typeof getMonthlySpending>, TError, TData>(queryKey, queryFn, queryOptions)
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+export const getDailyCalories = (
+    params?: GetDailyCaloriesParams, options?: AxiosRequestConfig
+ ): Promise<AxiosResponse<void>> => {
+    return axios.get(
+      `/food-entries/daily-calories`,{
+        params,
+    ...options}
+    );
+  }
+
+
+export const getGetDailyCaloriesQueryKey = (params?: GetDailyCaloriesParams,) => [`/food-entries/daily-calories`, ...(params ? [params]: [])];
+
+    
+export const useGetDailyCaloriesInfinite = <TData = AsyncReturnType<typeof getDailyCalories>, TError = AxiosError<unknown>>(
+ params?: GetDailyCaloriesParams, options?: { query?:UseInfiniteQueryOptions<AsyncReturnType<typeof getDailyCalories>, TError, TData>, axios?: AxiosRequestConfig}
+
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions, axios: axiosOptions} = options || {}
+
+  const queryKey = queryOptions?.queryKey ?? getGetDailyCaloriesQueryKey(params);
+
+  
+
+  const queryFn: QueryFunction<AsyncReturnType<typeof getDailyCalories>> = ({ pageParam }) => getDailyCalories({ page: pageParam, ...params }, axiosOptions);
+
+  const query = useInfiniteQuery<AsyncReturnType<typeof getDailyCalories>, TError, TData>(queryKey, queryFn, queryOptions)
+
+  return {
+    queryKey,
+    ...query
+  }
+}
+
+export const useGetDailyCalories = <TData = AsyncReturnType<typeof getDailyCalories>, TError = AxiosError<unknown>>(
+ params?: GetDailyCaloriesParams, options?: { query?:UseQueryOptions<AsyncReturnType<typeof getDailyCalories>, TError, TData>, axios?: AxiosRequestConfig}
+
+  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } => {
+
+  const {query: queryOptions, axios: axiosOptions} = options || {}
+
+  const queryKey = queryOptions?.queryKey ?? getGetDailyCaloriesQueryKey(params);
+
+  
+
+  const queryFn: QueryFunction<AsyncReturnType<typeof getDailyCalories>> = () => getDailyCalories(params, axiosOptions);
+
+  const query = useQuery<AsyncReturnType<typeof getDailyCalories>, TError, TData>(queryKey, queryFn, queryOptions)
 
   return {
     queryKey,

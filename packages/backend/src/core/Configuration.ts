@@ -1,8 +1,11 @@
-import 'dotenv/config'
+import 'dotenv/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { clientDatabaseConfiguration } from '@toptal-calories-counter/database';
 import * as winston from 'winston';
-import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
+import {
+  utilities as nestWinstonModuleUtilities,
+  WinstonModule,
+} from 'nest-winston';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -18,15 +21,16 @@ export const Configuration = {
   redis: process.env.REDIS_URI || 'redis://localhost:6379',
 };
 
-
 export const winstonConfig = WinstonModule.createLogger({
   transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.ms(),
-            nestWinstonModuleUtilities.format.nestLike('Toptal Calories Tracker', { prettyPrint: true }),
-          ),
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.ms(),
+        nestWinstonModuleUtilities.format.nestLike('Toptal Calories Tracker', {
+          prettyPrint: true,
         }),
-  ]
-})
+      ),
+    }),
+  ],
+});

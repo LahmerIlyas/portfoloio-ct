@@ -1,5 +1,5 @@
 import { JwtAuthGuard } from './../../guards/jwt.auth-guard';
-import { Controller, Get, Inject, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Inject, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import {
   Crud,
   CrudAuth,
@@ -12,7 +12,7 @@ import {
 } from '@nestjsx/crud';
 import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
 import { FoodEntriesService } from './food-entries.service';
-import { ApiBearerAuth, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { CreateFoodEntryDto } from './dto/create-food-entry.dto';
 import {
   FoodEntrySerializer,
@@ -75,7 +75,7 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @Override()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOperation({ operationId: 'getFoodEntries' })
+  @ApiOperation({ operationId: 'getFoodEntries' }) 
   getMany(@ParsedRequest() req: CrudRequest) {
     return this.service.getMany(req);
   }
@@ -85,7 +85,11 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'getMonthlySpending' })
   @UseInterceptors(CrudRequestInterceptor)
+  @UsePipes(new ValidationPipe({ transform: true }))
   @Get('monthly-spending')
+  @ApiQuery({ name: 'page', type: 'number', required: false })
+  @ApiQuery({ name: 'sort', type: 'string', isArray: true, required: false })
+  @ApiQuery({ name: 'filter', type: 'string', isArray: true, required: false })
   async getMonthlySpending(@ParsedRequest() req: CrudRequest) {
     return await this.monthlySpendingService.getMany(req);
   }
@@ -95,7 +99,11 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'getDailyCalories' })
   @UseInterceptors(CrudRequestInterceptor)
+  @UsePipes(new ValidationPipe({ transform: true }))
   @Get('daily-calories')
+  @ApiQuery({ name: 'page', type: 'number', required: false })
+  @ApiQuery({ name: 'sort', type: 'string', isArray: true, required: false })
+  @ApiQuery({ name: 'filter', type: 'string', isArray: true, required: false })
   async getDailyCalories(@ParsedRequest() req: CrudRequest) {
     return this.dailyCaloriesService.getMany(req);
   }

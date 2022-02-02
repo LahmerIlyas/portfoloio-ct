@@ -6,10 +6,4 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface FoodEntrySerializer {
-  id: number;
-  food_name: string;
-  taken_at: string;
-  price: string;
-  calories_count: string;
-}
+export type GetDailyCaloriesParams = { filter?: string[]; sort?: string[]; page?: number };

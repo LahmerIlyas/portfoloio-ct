@@ -4,17 +4,26 @@ import { mockDatabaseConnection } from './../src/core/mockDatabaseConnection';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Test } from '@nestjs/testing';
 import * as fs from 'fs';
-import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
+import {
+  FoodEntryEntity,
+  UserEntity,
+  DailyCalories,
+  MonthlySpending,
+} from '@toptal-calories-counter/database';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import orval from 'orval';
 
 async function generateSwaggerSchemaFile() {
-  const connection = await mockDatabaseConnection();
+  /*const connection = await mockDatabaseConnection();
   const moduleFixture = await Test.createTestingModule({
     imports: [UsersModule, FoodEntriesModule],
   })
     .overrideProvider(getRepositoryToken(UserEntity))
     .useValue(connection.getRepository(UserEntity))
+    .overrideProvider(getRepositoryToken(DailyCalories))
+    .useValue(connection.getRepository(DailyCalories))
+    .overrideProvider(getRepositoryToken(MonthlySpending))
+    .useValue(connection.getRepository(MonthlySpending))
     .overrideProvider(getRepositoryToken(FoodEntryEntity))
     .useValue(connection.getRepository(FoodEntryEntity))
     .compile();
@@ -29,7 +38,7 @@ async function generateSwaggerSchemaFile() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   fs.writeFileSync('./swagger-spec.json', JSON.stringify(document));
-
+*/
   orval('./orval.mobile.config.js');
 }
 generateSwaggerSchemaFile();
