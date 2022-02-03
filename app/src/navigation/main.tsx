@@ -12,10 +12,12 @@ import {
   SplashScreen,
   UserStatsScreen,
 } from '../screens';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export type RootStackParamList = {
   CreateFoodEntryScreen: undefined;
-  HomeScreen: undefined;
+  AppBottomTab: undefined;
   LoginScreen: undefined;
   OnBoardingScreen: undefined;
   RegisterScreen: undefined;
@@ -23,7 +25,63 @@ export type RootStackParamList = {
   UserStatsScreen: undefined;
 };
 
+export type AppBottomTabParamList = {
+  HomeScreen: undefined;
+  DailyCaloriesScreen: undefined;
+  MonthlySpendingScreen: undefined;
+};
+
 const Stack = createStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<AppBottomTabParamList>();
+
+export function AppBottomTab() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#91C788',
+        tabBarStyle: {},
+        tabBarLabelStyle: {
+          fontFamily: 'Signika-Regular',
+          fontSize: 16,
+        },
+      }}
+    >
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => {
+            return <MaterialIcons name={'home'} color={color} size={24} />;
+          },
+          tabBarLabel: 'Home',
+        }}
+        name="HomeScreen"
+        component={HomeScreen}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => {
+            return <MaterialIcons name={'fastfood'} color={color} size={24} />;
+          },
+          tabBarLabel: 'Calories',
+        }}
+        name="DailyCaloriesScreen"
+        component={HomeScreen}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIcon: ({ color }) => {
+            return (
+              <MaterialIcons name={'attach-money'} color={color} size={24} />
+            );
+          },
+          tabBarLabel: 'Spending',
+        }}
+        name="MonthlySpendingScreen"
+        component={HomeScreen}
+      />
+    </Tab.Navigator>
+  );
+}
 
 export function AppSwitchNavigator() {
   return (
@@ -40,7 +98,7 @@ export function AppSwitchNavigator() {
         name="CreateFoodEntryScreen"
         component={CreateFoodEntryScreen}
       />
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="AppBottomTab" component={AppBottomTab} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />

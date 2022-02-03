@@ -12,6 +12,7 @@ export const FoodEntry: React.FC<FoodEntrySerializer> = (props) => {
       <View>
         <Text style={styles.caloriesCount}>{props.calories_count} Cal</Text>
         <Text style={styles.foodName}>{props.food_name}</Text>
+        <Text style={styles.foodName}>{props.price} $</Text>
         <Text style={styles.date}>{props.taken_at.split('T')[0]}</Text>
       </View>
     </View>

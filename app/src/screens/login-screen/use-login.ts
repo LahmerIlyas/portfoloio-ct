@@ -14,7 +14,7 @@ export function useLogin() {
         data: values,
       });
       Axios.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
-      navigation.navigate('HomeScreen');
+      navigation.navigate('AppBottomTab');
     } catch (e) {
       console.log(JSON.stringify(e));
     }
