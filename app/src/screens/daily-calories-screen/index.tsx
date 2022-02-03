@@ -1,9 +1,20 @@
 import React, { useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
+import { FlatListFullscreenLoadingSpinner, FlatListLoadingMoreSpinner } from '../../components';
 import Banner from './components/banner';
 import { DailyCaloriesCard } from './components/daily-calories-card';
+import { useUserDailyCalories } from './use-user-daily-calories';
 
 export const DailyCaloriesScreen: React.FC = () => {
+  const {
+    data,
+    isFetching,
+    isRefetching,
+    refetch,
+    isLoadingMore,
+    loadMore,
+    isDone,
+  } = useUserDailyCalories();
   const renderItem = useCallback(({ item }) => {
     return <DailyCaloriesCard {...item} />;
   }, []);
@@ -12,21 +23,23 @@ export const DailyCaloriesScreen: React.FC = () => {
     <View style={styles.container}>
       <Banner style={{ alignSelf: 'center' }} />
       <Text style={styles.title}>Daily Calories</Text>
-      <FlatList
-        contentContainerStyle={{ paddingBottom: 16 }}
-        removeClippedSubviews={false}
-        initialNumToRender={0}
-        showsVerticalScrollIndicator={false}
-        data={[{}, []]}
-        //refreshControl={
-        //  <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
-        //}
-        //onEndReached={loadMore}
-        //onEndReachedThreshold={1}
-        //ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
-        //keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-      />
+      {(isFetching || isRefetching) && <FlatListFullscreenLoadingSpinner />}
+      {!(isFetching || isRefetching) && (
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 16 }}
+          removeClippedSubviews={false}
+          initialNumToRender={0}
+          showsVerticalScrollIndicator={false}
+          data={data}
+          refreshControl={
+            <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+          }
+          onEndReached={loadMore}
+          onEndReachedThreshold={1}
+          ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
+          //keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+        />)}
     </View>
   );
 };

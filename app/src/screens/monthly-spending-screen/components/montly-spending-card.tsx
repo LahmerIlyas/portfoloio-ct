@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { MonthlySpendingSerializer } from '../../../api';
 import Icon from './icon';
-
-export const MonthlySpendingCard: React.FC = () => {
+type MonthlySpendingCardProps = MonthlySpendingSerializer & {};
+export const MonthlySpendingCard: React.FC<MonthlySpendingCardProps> = (
+  props,
+) => {
   return (
     <View style={styles.container}>
       <Icon style={{ marginRight: 16 }} height={60} width={60} />
       <View>
-        <Text style={styles.date}>{new Date().toISOString().split('T')[0]}</Text>
-        <Text style={styles.price}>50$</Text>
+        <Text style={styles.date}>{props.month}</Text>
+        <Text style={styles.price}>{props.spending}$</Text>
       </View>
     </View>
   );

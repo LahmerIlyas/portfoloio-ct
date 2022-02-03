@@ -1,7 +1,9 @@
-import { useCallback } from 'react';
-import { FoodEntrySerializer, useGetFoodEntriesInfinite } from '../../api';
+import {
+  MonthlySpendingSerializer,
+  useGetMonthlySpendingInfinite,
+} from '../../api';
 
-export function useUserFoodEntries() {
+export function useUserMonthlySpending() {
   const {
     data,
     refetch,
@@ -10,9 +12,9 @@ export function useUserFoodEntries() {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = useGetFoodEntriesInfinite(
+  } = useGetMonthlySpendingInfinite(
     {
-      sort: ['created_at,DESC']
+      sort: ['month,DESC'],
     },
     {
       query: {
@@ -35,8 +37,8 @@ export function useUserFoodEntries() {
     data:
       (data?.pages
         ?.map((page) => page?.data?.data || [])
-        .flat() as any as FoodEntrySerializer[]) ||
-      ([] as FoodEntrySerializer[]),
+        .flat() as any as MonthlySpendingSerializer[]) ||
+      ([] as MonthlySpendingSerializer[]),
     isFetching: isFetching && !isFetchingNextPage,
     isLoadingMore: isFetchingNextPage,
     isDone: !hasNextPage,

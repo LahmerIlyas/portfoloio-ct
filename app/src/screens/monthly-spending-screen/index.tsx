@@ -1,9 +1,23 @@
 import React, { useCallback } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
+import {
+  FlatListFullscreenLoadingSpinner,
+  FlatListLoadingMoreSpinner,
+} from '../../components';
 import Banner from './components/banner';
 import { MonthlySpendingCard } from './components/montly-spending-card';
+import { useUserMonthlySpending } from './use-user-monthly-spending';
 
 export const MonthlySpendingScreen: React.FC = () => {
+  const {
+    data,
+    isFetching,
+    isRefetching,
+    refetch,
+    isLoadingMore,
+    loadMore,
+    isDone,
+  } = useUserMonthlySpending();
   const renderItem = useCallback(({ item }) => {
     return <MonthlySpendingCard {...item} />;
   }, []);
@@ -11,23 +25,25 @@ export const MonthlySpendingScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <Banner style={{ alignSelf: 'center' }} />
-      <Text style={styles.title}>Monthly spending screen</Text>
-      <FlatList
-        contentContainerStyle={{ paddingBottom: 16 }}
-        removeClippedSubviews={false}
-        initialNumToRender={0}
-        showsVerticalScrollIndicator={false}
-        data={[{}, []]}
-        //refreshControl={
-        //  <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
-        //}
-        //onEndReached={loadMore}
-        //onEndReachedThreshold={1}
-        //ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
-        //keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-      />
-
+      <Text style={styles.title}>Monthly spending</Text>
+      {(isFetching || isRefetching) && <FlatListFullscreenLoadingSpinner />}
+      {!(isFetching || isRefetching) && (
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 16 }}
+          removeClippedSubviews={false}
+          initialNumToRender={0}
+          showsVerticalScrollIndicator={false}
+          data={data}
+          refreshControl={
+            <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+          }
+          onEndReached={loadMore}
+          onEndReachedThreshold={1}
+          ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
+          //keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+        />
+      )}
     </View>
   );
 };

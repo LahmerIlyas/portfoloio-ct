@@ -1,7 +1,6 @@
-import { useCallback } from 'react';
-import { FoodEntrySerializer, useGetFoodEntriesInfinite } from '../../api';
+import { DailyCalorieSerializer, useGetDailyCaloriesInfinite } from '../../api';
 
-export function useUserFoodEntries() {
+export function useUserDailyCalories() {
   const {
     data,
     refetch,
@@ -10,9 +9,9 @@ export function useUserFoodEntries() {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = useGetFoodEntriesInfinite(
+  } = useGetDailyCaloriesInfinite(
     {
-      sort: ['created_at,DESC']
+      sort: ['date,DESC'],
     },
     {
       query: {
@@ -35,8 +34,8 @@ export function useUserFoodEntries() {
     data:
       (data?.pages
         ?.map((page) => page?.data?.data || [])
-        .flat() as any as FoodEntrySerializer[]) ||
-      ([] as FoodEntrySerializer[]),
+        .flat() as any as DailyCalorieSerializer[]) ||
+      ([] as DailyCalorieSerializer[]),
     isFetching: isFetching && !isFetchingNextPage,
     isLoadingMore: isFetchingNextPage,
     isDone: !hasNextPage,

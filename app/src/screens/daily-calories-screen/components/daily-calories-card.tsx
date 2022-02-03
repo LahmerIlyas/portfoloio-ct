@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { DailyCalorieSerializer } from '../../../api';
 import Icon from './icon';
 
-export const DailyCaloriesCard: React.FC = () => {
+type DailyCaloriesCardProps = DailyCalorieSerializer & {};
+export const DailyCaloriesCard: React.FC<DailyCaloriesCardProps> = (props) => {
   return (
     <View style={styles.container}>
       <Icon style={{ marginRight: 16 }} />
       <View>
-        <Text style={styles.date}>{new Date().toISOString().split('T')[0]}</Text>
-        <Text style={styles.count}>50Cal</Text>
+        <Text style={styles.date}>{props.date}</Text>
+        <Text style={styles.count}>{props.calories_count}Cal</Text>
       </View>
     </View>
   );
