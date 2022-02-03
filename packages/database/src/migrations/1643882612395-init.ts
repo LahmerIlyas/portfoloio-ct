@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class init1643834771519 implements MigrationInterface {
-    name = 'init1643834771519'
+export class init1643882612395 implements MigrationInterface {
+    name = 'init1643882612395'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -41,12 +41,13 @@ export class init1643834771519 implements MigrationInterface {
         `);
         await queryRunner.query(`
             CREATE VIEW "daily_calories" AS
-            SELECT TO_CHAR("entry"."taken_at"::date, 'dd-mm-yyyy') AS "date",
-                max("entry"."user_id") AS "user_id",
+            SELECT "entry"."user_id" AS "user_id",
+                TO_CHAR("entry"."taken_at", 'yyyy-mm-dd') AS "date",
                 sum("entry"."calories_count") AS "calories_count"
             FROM "food_entry" "entry"
-            GROUP BY entry.taken_at::date
-            ORDER BY entry.taken_at::date DESC
+            GROUP BY TO_CHAR("entry"."taken_at", 'yyyy-mm-dd'),
+                "entry"."user_id"
+            ORDER BY TO_CHAR("entry"."taken_at", 'yyyy-mm-dd') DESC
         `);
         await queryRunner.query(`
             INSERT INTO "typeorm_metadata"(
@@ -58,15 +59,16 @@ export class init1643834771519 implements MigrationInterface {
                     "value"
                 )
             VALUES (DEFAULT, $1, DEFAULT, $2, $3, $4)
-        `, ["public","VIEW","daily_calories","SELECT TO_CHAR( \"entry\".\"taken_at\" :: date, 'dd-mm-yyyy') AS \"date\", max(\"entry\".\"user_id\") AS \"user_id\", sum(\"entry\".\"calories_count\") AS \"calories_count\" FROM \"food_entry\" \"entry\" GROUP BY entry.taken_at::date ORDER BY entry.taken_at::date DESC"]);
+        `, ["public","VIEW","daily_calories","SELECT \"entry\".\"user_id\" AS \"user_id\", TO_CHAR(\"entry\".\"taken_at\", 'yyyy-mm-dd') AS \"date\", sum(\"entry\".\"calories_count\") AS \"calories_count\" FROM \"food_entry\" \"entry\" GROUP BY TO_CHAR(\"entry\".\"taken_at\", 'yyyy-mm-dd'), \"entry\".\"user_id\" ORDER BY TO_CHAR(\"entry\".\"taken_at\", 'yyyy-mm-dd') DESC"]);
         await queryRunner.query(`
             CREATE VIEW "monthly_spending" AS
-            SELECT to_char(taken_at, 'MM-YYYY') AS "month",
-                max("entry"."user_id") AS "user_id",
-                sum("entry"."calories_count") AS "spending"
+            SELECT "entry"."user_id" AS "user_id",
+                to_char(taken_at, 'YYYY-MM') AS "month",
+                sum("entry"."price") AS "spending"
             FROM "food_entry" "entry"
-            GROUP BY to_char(taken_at, 'MM-YYYY')
-            ORDER BY to_char(taken_at, 'MM-YYYY') DESC
+            GROUP BY to_char(taken_at, 'YYYY-MM'),
+                "entry"."user_id"
+            ORDER BY to_char(taken_at, 'YYYY-MM') DESC
         `);
         await queryRunner.query(`
             INSERT INTO "typeorm_metadata"(
@@ -78,7 +80,7 @@ export class init1643834771519 implements MigrationInterface {
                     "value"
                 )
             VALUES (DEFAULT, $1, DEFAULT, $2, $3, $4)
-        `, ["public","VIEW","monthly_spending","SELECT to_char(taken_at,'MM-YYYY') AS \"month\", max(\"entry\".\"user_id\") AS \"user_id\", sum(\"entry\".\"calories_count\") AS \"spending\" FROM \"food_entry\" \"entry\" GROUP BY to_char(taken_at,'MM-YYYY') ORDER BY to_char(taken_at,'MM-YYYY') DESC"]);
+        `, ["public","VIEW","monthly_spending","SELECT \"entry\".\"user_id\" AS \"user_id\", to_char(taken_at,'YYYY-MM') AS \"month\", sum(\"entry\".\"price\") AS \"spending\" FROM \"food_entry\" \"entry\" GROUP BY to_char(taken_at,'YYYY-MM'), \"entry\".\"user_id\" ORDER BY to_char(taken_at,'YYYY-MM') DESC"]);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

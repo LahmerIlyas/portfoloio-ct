@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import {
   MonthlySpendingSerializer,
   useGetMonthlySpendingInfinite,
+  useMe,
 } from '../../api';
 
 export function useUserMonthlySpending() {
+  const profile = useMe();
+  const [showOnlyExceedingMonths, setShowOnlyExceedingMonths] = useState(false);
+
   const {
     data,
     refetch,
@@ -15,6 +20,13 @@ export function useUserMonthlySpending() {
   } = useGetMonthlySpendingInfinite(
     {
       sort: ['month,DESC'],
+      filter: [
+        `spending||$gte||${
+          showOnlyExceedingMonths
+            ? profile.data?.data?.user_monthly_spend_limit
+            : '0'
+        }`,
+      ],
     },
     {
       query: {
@@ -45,5 +57,7 @@ export function useUserMonthlySpending() {
     refetch,
     isRefetching: isRefetching && !isFetchingNextPage,
     loadMore,
+    showOnlyExceedingMonths,
+    setShowOnlyExceedingMonths,
   };
 }

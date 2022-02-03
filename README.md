@@ -1,8 +1,8 @@
 # toptal-calories-counter
 
-- Create a bottom tab navigation with two additional tabs
-- Create a screen to list monthly spending
-- Create a screen to list daily calories
+- Create a bottom tab navigation with two additional tabs [done]
+- Create a screen to list monthly spending [done]
+- Create a screen to list daily calories [done]
 - Add a toggle to show only months where spending exceeded limit
 - Add a toggle to show only days where calories exceeded limit
 - Add a range filter option on the home screen to select date range of food entries

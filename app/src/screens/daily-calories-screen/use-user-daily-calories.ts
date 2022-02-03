@@ -1,6 +1,15 @@
-import { DailyCalorieSerializer, useGetDailyCaloriesInfinite } from '../../api';
+import { useState } from 'react';
+import {
+  DailyCalorieSerializer,
+  me,
+  useGetDailyCaloriesInfinite,
+  useMe,
+} from '../../api';
 
 export function useUserDailyCalories() {
+  const profile = useMe();
+  const [showOnlyExceedingDays, setShowOnlyExceedingDays] = useState(false);
+
   const {
     data,
     refetch,
@@ -12,6 +21,11 @@ export function useUserDailyCalories() {
   } = useGetDailyCaloriesInfinite(
     {
       sort: ['date,DESC'],
+      filter: [
+        `calories_count||$gte||${
+          showOnlyExceedingDays ? profile.data?.data?.user_calories_limit : '0'
+        }`,
+      ],
     },
     {
       query: {
@@ -42,5 +56,7 @@ export function useUserDailyCalories() {
     refetch,
     isRefetching: isRefetching && !isFetchingNextPage,
     loadMore,
+    setShowOnlyExceedingDays,
+    showOnlyExceedingDays,
   };
 }

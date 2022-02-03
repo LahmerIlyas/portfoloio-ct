@@ -5,6 +5,7 @@ import {
   FlatListLoadingMoreSpinner,
 } from '../../components';
 import Banner from './components/banner';
+import { Filter } from './components/filter';
 import { MonthlySpendingCard } from './components/montly-spending-card';
 import { useUserMonthlySpending } from './use-user-monthly-spending';
 
@@ -17,6 +18,8 @@ export const MonthlySpendingScreen: React.FC = () => {
     isLoadingMore,
     loadMore,
     isDone,
+    showOnlyExceedingMonths,
+    setShowOnlyExceedingMonths,
   } = useUserMonthlySpending();
   const renderItem = useCallback(({ item }) => {
     return <MonthlySpendingCard {...item} />;
@@ -26,6 +29,10 @@ export const MonthlySpendingScreen: React.FC = () => {
     <View style={styles.container}>
       <Banner style={{ alignSelf: 'center' }} />
       <Text style={styles.title}>Monthly spending</Text>
+      <Filter
+        showOnlyExceedingMonths={showOnlyExceedingMonths}
+        setShowOnlyExceedingMonths={setShowOnlyExceedingMonths}
+      />
       {(isFetching || isRefetching) && <FlatListFullscreenLoadingSpinner />}
       {!(isFetching || isRefetching) && (
         <FlatList

@@ -1,8 +1,12 @@
 import React, { useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
-import { FlatListFullscreenLoadingSpinner, FlatListLoadingMoreSpinner } from '../../components';
+import {
+  FlatListFullscreenLoadingSpinner,
+  FlatListLoadingMoreSpinner,
+} from '../../components';
 import Banner from './components/banner';
 import { DailyCaloriesCard } from './components/daily-calories-card';
+import { Filter } from './components/filter';
 import { useUserDailyCalories } from './use-user-daily-calories';
 
 export const DailyCaloriesScreen: React.FC = () => {
@@ -14,6 +18,8 @@ export const DailyCaloriesScreen: React.FC = () => {
     isLoadingMore,
     loadMore,
     isDone,
+    setShowOnlyExceedingDays,
+    showOnlyExceedingDays,
   } = useUserDailyCalories();
   const renderItem = useCallback(({ item }) => {
     return <DailyCaloriesCard {...item} />;
@@ -23,6 +29,10 @@ export const DailyCaloriesScreen: React.FC = () => {
     <View style={styles.container}>
       <Banner style={{ alignSelf: 'center' }} />
       <Text style={styles.title}>Daily Calories</Text>
+      <Filter
+        setShowOnlyExceedingDays={setShowOnlyExceedingDays}
+        showOnlyExceedingDays={showOnlyExceedingDays}
+      />
       {(isFetching || isRefetching) && <FlatListFullscreenLoadingSpinner />}
       {!(isFetching || isRefetching) && (
         <FlatList
@@ -39,7 +49,8 @@ export const DailyCaloriesScreen: React.FC = () => {
           ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
           //keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
-        />)}
+        />
+      )}
     </View>
   );
 };

@@ -5,12 +5,13 @@ import { Connection, ViewColumn, ViewEntity } from 'typeorm';
   expression: (connection: Connection) =>
     connection
       .createQueryBuilder()
-      .select(`TO_CHAR( entry.taken_at :: date, 'dd-mm-yyyy')`, 'date')
-      .addSelect('max(entry.user_id)', 'user_id')
+      .select(`TO_CHAR(entry.taken_at, 'yyyy-mm-dd')`, 'date')
+      .addSelect('entry.user_id', 'user_id')
       .addSelect('sum(entry.calories_count)', 'calories_count')
       .from(FoodEntryEntity, 'entry')
-      .groupBy('entry.taken_at::date')
-      .orderBy('entry.taken_at::date', 'DESC'),
+      .groupBy(`TO_CHAR(entry.taken_at, 'yyyy-mm-dd')`)
+      .addGroupBy('entry.user_id')
+      .orderBy(`TO_CHAR(entry.taken_at, 'yyyy-mm-dd')`, 'DESC'),
 })
 export class DailyCalories {
   @ViewColumn()

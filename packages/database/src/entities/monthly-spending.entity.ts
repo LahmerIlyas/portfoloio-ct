@@ -5,12 +5,13 @@ import { Connection, ViewColumn, ViewEntity } from 'typeorm';
   expression: (connection: Connection) =>
     connection
       .createQueryBuilder()
-      .select(`to_char(taken_at,'MM-YYYY')`, 'month')
-      .addSelect('max(entry.user_id)', 'user_id')
-      .addSelect('sum(entry.calories_count)', 'spending')
+      .select(`to_char(taken_at,'YYYY-MM')`, 'month')
+      .addSelect('entry.user_id', 'user_id')
+      .addSelect('sum(entry.price)', 'spending')
       .from(FoodEntryEntity, 'entry')
-      .groupBy(`to_char(taken_at,'MM-YYYY')`)
-      .orderBy(`to_char(taken_at,'MM-YYYY')`, 'DESC'),
+      .groupBy(`to_char(taken_at,'YYYY-MM')`)
+      .addGroupBy('entry.user_id')
+      .orderBy(`to_char(taken_at,'YYYY-MM')`, 'DESC'),
 })
 export class MonthlySpending {
   @ViewColumn()
