@@ -11,6 +11,7 @@ import { FoodEntrySerializer } from '../../api';
 import {
   FlatListFullscreenLoadingSpinner,
   FlatListLoadingMoreSpinner,
+  FormDateRangeInput,
 } from '../../components';
 
 export const HomeScreen: React.FC = (props) => {
@@ -22,6 +23,7 @@ export const HomeScreen: React.FC = (props) => {
     isLoadingMore,
     loadMore,
     isDone,
+    setRange,
   } = useUserFoodEntries();
   const navigation = useNavigation<HomeScreenScreenNavigationProp>();
 
@@ -38,6 +40,7 @@ export const HomeScreen: React.FC = (props) => {
       <Text style={styles.helloTitle}>Hello Shambhavi,</Text>
       <Text style={styles.subtitle}>Find, track and eat heathy food.</Text>
       <Banner style={styles.banner} />
+      <FormDateRangeInput onChange={setRange} />
       {(isFetching || isRefetching) && <FlatListFullscreenLoadingSpinner />}
       {!(isFetching || isRefetching) && (
         <FlatList

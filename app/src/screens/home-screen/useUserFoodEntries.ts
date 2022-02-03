@@ -1,7 +1,19 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { FoodEntrySerializer, useGetFoodEntriesInfinite } from '../../api';
 
 export function useUserFoodEntries() {
+  const [range, setRange] = useState<{ from?: string; to?: string }>({
+    from: undefined,
+    to: undefined,
+  });
+
+  const filter = useMemo<Array<string>>(() => {
+    return [
+      range.from ? `taken_at||$gte||${range.from}` : undefined,
+      range.to ? `taken_at||$lte||${range.to}` : undefined,
+    ].filter((v) => v) as Array<string>;
+  }, [range]);
+
   const {
     data,
     refetch,
@@ -12,7 +24,8 @@ export function useUserFoodEntries() {
     hasNextPage,
   } = useGetFoodEntriesInfinite(
     {
-      sort: ['created_at,DESC']
+      sort: ['taken_at,DESC'],
+      filter,
     },
     {
       query: {
@@ -43,5 +56,6 @@ export function useUserFoodEntries() {
     refetch,
     isRefetching: isRefetching && !isFetchingNextPage,
     loadMore,
+    setRange,
   };
 }
