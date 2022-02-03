@@ -1,16 +1,16 @@
-import { Column, Entity, OneToMany } from "typeorm";
-import { FoodEntryEntity } from ".";
-import { BaseEntity } from "./base.entity";
+import { Column, Entity, OneToMany } from 'typeorm';
+import { FoodEntryEntity } from './food-entry.entity';
+import { BaseEntity } from './base.entity';
+import { DbAwareColumn } from '../decorators';
 
 export enum UserRole {
-  USER = "user",
-  ADMIN = "admin",
-  SUPER_ADMIN = "super_admin"
+  USER = 'user',
+  ADMIN = 'admin',
+  SUPER_ADMIN = 'super_admin',
 }
 
 @Entity('user')
 export class UserEntity extends BaseEntity {
-
   @Column('varchar', { nullable: true, length: 30, name: 'first_name' })
   first_name: string;
 
@@ -29,9 +29,11 @@ export class UserEntity extends BaseEntity {
   @Column('numeric', { default: 1000, name: 'user_monthly_spend_limit' })
   user_monthly_spend_limit: number;
 
-  @Column({ type: "enum",enum: UserRole, default: UserRole.USER })
+  @DbAwareColumn({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role: UserRole;
 
-  @OneToMany(type => FoodEntryEntity, entry => entry.user_id, {cascade: ['insert']})
+  @OneToMany((type) => FoodEntryEntity, (entry) => entry.user_id, {
+    cascade: ['insert'],
+  })
   entries: FoodEntryEntity[];
 }

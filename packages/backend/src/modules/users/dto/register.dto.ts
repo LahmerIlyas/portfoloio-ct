@@ -1,30 +1,29 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Exclude, Expose } from "class-transformer";
-import { IsEmail, IsString, MinLength, IsOptional } from "class-validator";
-import { UniqueEmail } from "../../../decorators/unique-mail.decorator";
-
+import { ApiProperty } from '@nestjs/swagger';
+import { Exclude, Expose } from 'class-transformer';
+import { IsEmail, IsString, MinLength, IsOptional } from 'class-validator';
+import { UniqueEmail } from '../../../decorators/unique-mail.decorator';
 
 @Exclude()
 export class RegisterDto {
-    @Expose()
-    @IsEmail()
-    @UniqueEmail()
-    @ApiProperty()
-    email: string;
+  @Expose()
+  @IsEmail()
+  @UniqueEmail()
+  @ApiProperty()
+  email: string;
 
-    @Expose()
-    @IsString()
-    @MinLength(8)
-    @ApiProperty()
-    password: string;
+  @Expose()
+  @IsString()
+  @MinLength(8)
+  @ApiProperty()
+  password: string;
 
-    @Expose()
-    @ApiProperty()
-    @IsOptional()
-    first_name: string;
+  @Expose()
+  @ApiProperty()
+  @IsOptional()
+  first_name: string;
 
-    @Expose()
-    @ApiProperty()
-    @IsOptional()
-    last_name: string;
+  @Expose()
+  @ApiProperty()
+  @IsOptional()
+  last_name: string;
 }

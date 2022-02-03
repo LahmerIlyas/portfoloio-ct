@@ -21,5 +21,5 @@ export class DailyCalories {
   date: Date;
 
   @ViewColumn()
-  calories_count: Date;
+  calories_count: number;
 }

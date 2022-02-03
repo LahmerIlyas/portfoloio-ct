@@ -21,5 +21,5 @@ export class MonthlySpending {
   month: string;
 
   @ViewColumn()
-  spending: Date;
+  spending: number;
 }

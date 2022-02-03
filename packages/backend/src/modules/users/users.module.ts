@@ -10,7 +10,6 @@ import { Configuration } from '../../core';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
-
 @Module({
   imports: [
     PassportModule,
@@ -18,6 +17,6 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     JwtModule.register(Configuration.jwt),
   ],
   providers: [UsersService, LocalStrategy, JwtStrategy, Logger],
-  controllers: [UsersController]
+  controllers: [UsersController],
 })
 export class UsersModule {}
