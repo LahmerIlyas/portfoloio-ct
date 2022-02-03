@@ -5,7 +5,7 @@ import {
 import { BaseEntity as Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export abstract class BaseEntity extends Entity {
-  @PrimaryGeneratedColumn('identity')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @DbAwareCreateDateColumn({

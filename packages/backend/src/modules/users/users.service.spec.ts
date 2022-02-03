@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserEntity } from '@toptal-calories-counter/database';
 import { UsersService } from './users.service';
-import { Connection, Repository } from 'typeorm';
-import { Configuration, mockDatabaseConnection } from '../../core';
+import { Repository } from 'typeorm';
+import { Configuration } from '../../core';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local.strategy';
@@ -11,18 +11,12 @@ import { Logger } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { mockTypeormModule } from '../../core/mockTypeormModule';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 
 describe('UsersService', () => {
   let service: UsersService;
   let jwtService: JwtService;
-  //let connection: Connection;
-  //let userRepository: Repository<UserEntity>;
-
-  beforeAll(async () => {
-    // connection = await mockDatabaseConnection();
-    //userRepository = connection.getRepository<UserEntity>('UserEntity');
-  });
+  let userRepository: Repository<UserEntity>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -37,12 +31,13 @@ describe('UsersService', () => {
 
     service = module.get<UsersService>(UsersService);
     jwtService = module.get<JwtService>(JwtService);
+    userRepository = module.get(getRepositoryToken(UserEntity));
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-/*
+
   it('should create a valid jwt token for the provided user id', async () => {
     const { access_token } = await service.generateToken(1);
     expect(jwtService.decode(access_token)['id']).toBe(1);
@@ -74,5 +69,4 @@ describe('UsersService', () => {
       expect(is_matched).toBe(true);
     });
   });
-  */
 });
