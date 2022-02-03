@@ -32,9 +32,4 @@ export class CreateFoodEntryDto {
   @IsPositive()
   @ApiProperty()
   price: number;
-
-  @Expose()
-  @IsNumber()
-  @ApiProperty()
-  user_id: number;
 }

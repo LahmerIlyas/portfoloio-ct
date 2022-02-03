@@ -20,10 +20,10 @@ export class RegisterDto {
   @Expose()
   @ApiProperty()
   @IsOptional()
-  first_name: string;
+  first_name?: string;
 
   @Expose()
   @ApiProperty()
   @IsOptional()
-  last_name: string;
+  last_name?: string;
 }
