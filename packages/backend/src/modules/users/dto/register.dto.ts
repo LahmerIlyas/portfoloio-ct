@@ -13,7 +13,7 @@ export class RegisterDto {
 
   @Expose()
   @IsString()
-  @MinLength(8)
+  @MinLength(4)
   @ApiProperty()
   password: string;
 

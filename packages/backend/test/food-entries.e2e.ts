@@ -1,26 +1,26 @@
 import { UsersModule } from './../src/modules/users/users.module';
-import { mockDatabaseConnection } from './../src/core/mockDatabaseConnection';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { Connection, Repository } from 'typeorm';
-import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
-import { Configuration, mockTypeormRepository } from '../src/core';
+import { Repository } from 'typeorm';
+import {
+  FoodEntryEntity,
+  UserEntity,
+  DailyCalories,
+  MonthlySpending,
+} from '@toptal-calories-counter/database';
+import { Configuration } from '../src/core';
 import { FoodEntriesModule } from '../src/modules/food-entries/food-entries.module';
 import { ConfigModule } from '@nestjs/config';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { mockTypeormModule } from '../src/core/mockTypeormModule';
 
 describe('FoodEntries (e2e)', () => {
   let app: INestApplication;
-  let connection: Connection;
   let foodEntryRepository: Repository<FoodEntryEntity>;
   let userRepository: Repository<UserEntity>;
-
-  beforeAll(async () => {
-    connection = await mockDatabaseConnection();
-    foodEntryRepository = connection.getRepository<FoodEntryEntity>('FoodEntryEntity');
-    userRepository = connection.getRepository<UserEntity>('UserEntity');
-  })
+  let dailyCaloriesRepository: Repository<DailyCalories>;
+  let mpnthlySpendingRepository: Repository<MonthlySpending>;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -30,18 +30,25 @@ describe('FoodEntries (e2e)', () => {
           cache: true,
           load: [() => Configuration],
         }),
+        mockTypeormModule(),
         UsersModule,
         FoodEntriesModule,
       ],
-    })
-      .overrideProvider(getRepositoryToken(UserEntity))
-      .useValue(connection.getRepository(UserEntity))
-      .overrideProvider(getRepositoryToken(FoodEntryEntity))
-      .useValue(connection.getRepository(FoodEntryEntity))
-      .compile();
+    }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    userRepository = moduleFixture.get(getRepositoryToken(UserEntity));
+    foodEntryRepository = moduleFixture.get(
+      getRepositoryToken(FoodEntryEntity),
+    );
+    dailyCaloriesRepository = moduleFixture.get(
+      getRepositoryToken(DailyCalories),
+    );
+    mpnthlySpendingRepository = moduleFixture.get(
+      getRepositoryToken(MonthlySpending),
+    );
   });
 
   it('/ (GET)', () => {
@@ -64,7 +71,7 @@ describe('FoodEntries (e2e)', () => {
         .expect(200)
         .expect('Hello World!');
     });
-  })
+  });
 
   describe('Get food entries', () => {
     it('should return the logged in user entires', () => {
@@ -73,6 +80,5 @@ describe('FoodEntries (e2e)', () => {
         .expect(200)
         .expect('Hello World!');
     });
-  })
-
+  });
 });

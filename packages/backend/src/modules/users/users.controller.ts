@@ -5,6 +5,8 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
+  HttpStatus,
   Inject,
   Post,
   Req,
@@ -40,6 +42,7 @@ export class UsersController {
     type: AccessTokenSerializer,
   })
   @ApiOperation({ operationId: 'login' })
+  @HttpCode(200)
   public async login(
     @Body() input: LoginDto,
     @Req() request,
