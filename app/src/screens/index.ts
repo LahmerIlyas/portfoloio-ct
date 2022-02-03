@@ -5,3 +5,5 @@ export * from './onboarding-screen';
 export * from './register-screen';
 export * from './spalsh-screen';
 export * from './user-stats-screen';
+export * from './daily-calories-screen';
+export * from './monthly-spending-screen';

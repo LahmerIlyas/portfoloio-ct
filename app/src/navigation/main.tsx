@@ -11,6 +11,8 @@ import {
   RegisterScreen,
   SplashScreen,
   UserStatsScreen,
+  MonthlySpendingScreen,
+  DailyCaloriesScreen,
 } from '../screens';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -65,7 +67,7 @@ export function AppBottomTab() {
           tabBarLabel: 'Calories',
         }}
         name="DailyCaloriesScreen"
-        component={HomeScreen}
+        component={DailyCaloriesScreen}
       />
       <Tab.Screen
         options={{
@@ -77,7 +79,7 @@ export function AppBottomTab() {
           tabBarLabel: 'Spending',
         }}
         name="MonthlySpendingScreen"
-        component={HomeScreen}
+        component={MonthlySpendingScreen}
       />
     </Tab.Navigator>
   );
