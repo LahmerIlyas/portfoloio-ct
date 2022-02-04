@@ -88,7 +88,7 @@ export function AppBottomTab() {
 export function AppSwitchNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="LoginScreen"
+      initialRouteName="SplashScreen"
       screenOptions={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,

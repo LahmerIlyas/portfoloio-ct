@@ -7,7 +7,7 @@ import Logo from './components/Logo';
 export const SplashScreen: React.FC = (props) => {
   const navigation = useNavigation<SplashScreenScreenNavigationProp>();
   useEffect(() => {
-    setTimeout(() => navigation.navigate('OnBoardingScreen'), 1000);
+    setTimeout(() => navigation.navigate('OnBoardingScreen'), 2000);
   }, []);
 
   return (

@@ -11,9 +11,16 @@ export function useUserFoodEntries() {
     console.log({
       range
     });
+    let newTo = undefined;
+    if (range.to) {
+      const newDate = new Date(range.to);
+      newDate.setDate(newDate.getDate() + 1);
+      newTo = newDate.toISOString().split('T')[0];
+    }
+
     return [
       range.from ? `taken_at||$gte||${range.from}` : undefined,
-      range.to ? `taken_at||$lte||${range.to}` : undefined,
+      range.to ? `taken_at||$lte||${newTo}` : undefined,
     ].filter((v) => v) as Array<string>;
   }, [range]);
 
