@@ -9,9 +9,10 @@ import {
 } from '../../components';
 import Logo from './components/Logo';
 import { LoginFormValidationSchema } from './schema';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 export const LoginScreen: React.FC = (props) => {
-  const { login } = useLogin();
+  const { login, isError, clearError } = useLogin();
   return (
     <View style={styles.container}>
       <Logo style={{ marginBottom: 32 }} />
@@ -32,6 +33,20 @@ export const LoginScreen: React.FC = (props) => {
           />
         </Fragment>
       </Formik>
+      <AwesomeAlert
+        show={isError}
+        showProgress={false}
+        title="Error"
+        message="Wrong Password/email!"
+        closeOnTouchOutside={true}
+        closeOnHardwareBackPress={false}
+        showCancelButton={true}
+        showConfirmButton={false}
+        cancelText="Ok"
+        confirmButtonColor="#DD6B55"
+        onCancelPressed={clearError}
+        onConfirmPressed={clearError}
+      />
     </View>
   );
 };

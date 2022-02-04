@@ -6,6 +6,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 type FormDateTimeInputProps = {
   title: string;
   field: string;
+  maximumDate?: Date;
+  minimumDate?: Date;
 };
 
 export const FormDateTimeInput: React.FC<FormDateTimeInputProps> = (props) => {
@@ -27,7 +29,7 @@ export const FormDateTimeInput: React.FC<FormDateTimeInputProps> = (props) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
-    setValue(date);
+    setValue(currentDate);
   }, []);
 
   return (
@@ -39,7 +41,13 @@ export const FormDateTimeInput: React.FC<FormDateTimeInputProps> = (props) => {
         </Text>
       </Pressable>
       {show && (
-        <DateTimePicker value={date} mode="datetime" onChange={onChange} />
+        <DateTimePicker
+          value={date}
+          maximumDate={props.maximumDate}
+          minimumDate={props.minimumDate}
+          mode="datetime"
+          onChange={onChange}
+        />
       )}
     </View>
   );

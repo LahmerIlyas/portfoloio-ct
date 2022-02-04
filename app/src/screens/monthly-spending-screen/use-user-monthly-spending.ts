@@ -30,6 +30,7 @@ export function useUserMonthlySpending() {
     },
     {
       query: {
+        queryKey: ['monthly-spending', showOnlyExceedingMonths],
         getNextPageParam: (lastPage) => {
           return lastPage.data.page < lastPage.data.pageCount
             ? lastPage.data.page + 1

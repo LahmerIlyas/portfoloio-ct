@@ -47,7 +47,7 @@ export const DailyCaloriesScreen: React.FC = () => {
           onEndReached={loadMore}
           onEndReachedThreshold={1}
           ListFooterComponent={isLoadingMore && <FlatListLoadingMoreSpinner />}
-          //keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={renderItem}
         />
       )}

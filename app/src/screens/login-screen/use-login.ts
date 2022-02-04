@@ -6,7 +6,7 @@ import Axios from 'axios';
 
 export function useLogin() {
   const navigation = useNavigation<LoginScreenNavigationProp>();
-  const { mutateAsync } = useBackendLogin();
+  const { mutateAsync, isError, reset } = useBackendLogin();
 
   const login = useCallback(async (values: LoginDto) => {
     try {
@@ -21,5 +21,7 @@ export function useLogin() {
   }, []);
   return {
     login,
+    isError,
+    clearError: reset,
   };
 }

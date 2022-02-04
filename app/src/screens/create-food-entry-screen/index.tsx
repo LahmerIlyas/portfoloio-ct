@@ -47,7 +47,11 @@ export const CreateFoodEntryScreen: React.FC = (props) => {
             title="Price"
             placeholder="The price of the food"
           />
-          <FormDateTimeInput field="taken_at" title="Date" />
+          <FormDateTimeInput
+            field="taken_at"
+            title="Date"
+            maximumDate={new Date()}
+          />
           <FormSubmitButton
             title="Create Entry"
             style={{ marginVertical: 32 }}

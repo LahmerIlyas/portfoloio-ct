@@ -1,13 +1,15 @@
 import 'react-native-gesture-handler';
 import React, { useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { LogBox, StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as Sentry from 'sentry-expo';
 import Updates from 'expo-updates';
 import { QueryClientProvider } from 'react-query';
 import { AppContainer } from './src/navigation';
 import { queryClient } from './src/api';
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 export default function App() {
   const [updateDone, setUpdateDone] = useState(false);

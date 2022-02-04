@@ -28,6 +28,7 @@ export function useUserDailyCalories() {
     },
     {
       query: {
+        queryKey: ['daily-calories', showOnlyExceedingDays],
         getNextPageParam: (lastPage) => {
           return lastPage.data.page < lastPage.data.pageCount
             ? lastPage.data.page + 1

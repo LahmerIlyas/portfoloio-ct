@@ -54,6 +54,7 @@ export const FormDateRangeInput: React.FC<FormDateRangeInputProps> = (
         <DatePicker
           value={date?.from ? new Date(date?.from) : new Date()}
           onChange={setFomDate}
+          maximumDate={date?.to ? new Date(date?.to) : new Date()}
         />
       )}
       <Text style={styles.title}>To</Text>
@@ -61,12 +62,14 @@ export const FormDateRangeInput: React.FC<FormDateRangeInputProps> = (
         style={styles.dateButtonContainer}
         onPress={() => setShowToDateInput(true)}
       >
-        <Text>{date.from ? date.to : ''}</Text>
+        <Text>{date.to ? date.to : ''}</Text>
       </Pressable>
       {showToDateInput && (
         <DatePicker
           value={date?.to ? new Date(date?.to) : new Date()}
           onChange={setToDate}
+          maximumDate={new Date()}
+          minimumDate={date?.from ? new Date(date?.from) : undefined}
         />
       )}
     </View>

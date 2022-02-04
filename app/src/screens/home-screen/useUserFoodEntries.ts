@@ -8,7 +8,9 @@ export function useUserFoodEntries() {
   });
 
   const filter = useMemo<Array<string>>(() => {
-    console.log('triggered range update');
+    console.log({
+      range
+    });
     return [
       range.from ? `taken_at||$gte||${range.from}` : undefined,
       range.to ? `taken_at||$lte||${range.to}` : undefined,
