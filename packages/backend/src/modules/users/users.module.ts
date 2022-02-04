@@ -1,4 +1,3 @@
-import { LocalAuthGuard } from './../../guards/local.auth-guard';
 import { Logger, Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';

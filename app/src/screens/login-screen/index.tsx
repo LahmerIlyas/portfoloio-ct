@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import { useLogin } from './use-login';
 import {

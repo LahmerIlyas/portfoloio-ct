@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { View, FlatList, RefreshControl, StyleSheet, Text } from 'react-native';
 import { FloatingAction } from 'react-native-floating-action';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -7,7 +7,6 @@ import { HomeScreenScreenNavigationProp } from '../../navigation';
 import Banner from './components/banner';
 import { FoodEntry } from './components/food-entry';
 import { useUserFoodEntries } from './useUserFoodEntries';
-import { FoodEntrySerializer } from '../../api';
 import {
   FlatListFullscreenLoadingSpinner,
   FlatListLoadingMoreSpinner,

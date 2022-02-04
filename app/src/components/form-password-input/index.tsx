@@ -1,5 +1,5 @@
 import { useField } from 'formik';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
 
 type FormPasswordInputProps = {

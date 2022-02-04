@@ -1,16 +1,3 @@
-import { FoodEntriesModule } from './../src/modules/food-entries/food-entries.module';
-import { UsersModule } from './../src/modules/users/users.module';
-import { mockDatabaseConnection } from './../src/core/mockDatabaseConnection';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { Test } from '@nestjs/testing';
-import * as fs from 'fs';
-import {
-  FoodEntryEntity,
-  UserEntity,
-  DailyCalories,
-  MonthlySpending,
-} from '@toptal-calories-counter/database';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import orval from 'orval';
 
 async function generateSwaggerSchemaFile() {

@@ -1,18 +1,18 @@
+import * as AdminJSExpress from '@adminjs/express';
+import { Database, Resource } from '@adminjs/typeorm';
 import {
   clientDatabaseConfiguration,
   UserEntity,
   UserRole,
 } from '@toptal-calories-counter/database';
-import * as express from 'express';
 import AdminJS from 'adminjs';
-import * as AdminJSExpress from '@adminjs/express';
-import { Database, Resource } from '@adminjs/typeorm';
-import { resources } from './resources';
-import { validate } from 'class-validator';
-import { createConnection } from 'typeorm';
-import * as path from 'path';
 import * as bcrypt from 'bcrypt';
+import { validate } from 'class-validator';
+import * as express from 'express';
+import * as path from 'path';
+import { createConnection } from 'typeorm';
 import { fetchDashboardStatistics } from './pages/dashboard/fetch-dashboard-statistics';
+import { resources } from './resources';
 
 Resource.validate = validate;
 AdminJS.registerAdapter({ Database: Database, Resource: Resource });

@@ -6,7 +6,6 @@ import {
   Controller,
   Get,
   HttpCode,
-  HttpStatus,
   Inject,
   Post,
   Req,
@@ -20,12 +19,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LocalAuthGuard } from '../../guards/local.auth-guard';
 import { AccessTokenSerializer } from './serializer/access-token.serializer';
 import { UserProfileSerializer } from './serializer/user-profile.serializer';
-import {
-  ApiBearerAuth,
-  ApiOkResponse,
-  ApiOperation,
-  ApiQuery,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { User } from '../../decorators/user.decorator';
 
 @Controller('/')

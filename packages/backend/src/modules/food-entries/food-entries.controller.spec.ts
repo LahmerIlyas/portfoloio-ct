@@ -1,6 +1,4 @@
-import { mockTypeormRepository } from './../../core/mockTypeormRepository';
 import { Configuration } from '../../core';
-import { mockDatabaseConnection } from './../../core/mockDatabaseConnection';
 import { Test, TestingModule } from '@nestjs/testing';
 import {
   DailyCalories,
@@ -8,7 +6,6 @@ import {
   MonthlySpending,
   UserEntity,
 } from '@toptal-calories-counter/database';
-import { Connection, Repository } from 'typeorm';
 import { FoodEntriesController } from './food-entries.controller';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';

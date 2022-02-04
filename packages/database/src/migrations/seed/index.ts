@@ -1,7 +1,6 @@
 import { UserEntity, FoodEntryEntity } from './../../entities';
-import { Connection, Repository } from 'typeorm';
+import { Connection } from 'typeorm';
 import { users } from './users';
-import * as bcrypt from 'bcrypt';
 
 export const seedDB = async (connection: Connection) => {
   const usersRepository = connection.getRepository<UserEntity>('UserEntity');

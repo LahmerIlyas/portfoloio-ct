@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React, { Fragment } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { CreateFoodEntryDto } from '../../api';
 import {
   FormSubmitButton,

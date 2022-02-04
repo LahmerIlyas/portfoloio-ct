@@ -1,6 +1,5 @@
 import { UserEntity, UserRole } from './../../entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { FoodEntryEntity } from '../../entities/food-entry.entity';
 
 function generateRandomHistory() {
   const entries = [];

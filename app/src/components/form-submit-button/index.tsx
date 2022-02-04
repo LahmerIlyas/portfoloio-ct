@@ -5,7 +5,6 @@ import {
   Pressable,
   StyleProp,
   ViewStyle,
-  ActivityIndicator,
 } from 'react-native';
 import { useFormikContext } from 'formik';
 

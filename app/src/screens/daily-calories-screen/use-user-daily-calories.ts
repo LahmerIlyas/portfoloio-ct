@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   DailyCalorieSerializer,
-  me,
   useGetDailyCaloriesInfinite,
   useMe,
 } from '../../api';
