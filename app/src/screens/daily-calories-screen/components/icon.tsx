@@ -1,5 +1,5 @@
-import * as React from "react"
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
+import * as React from 'react';
+import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
 
 function Icon(props) {
   return (
@@ -51,7 +51,7 @@ function Icon(props) {
         </ClipPath>
       </Defs>
     </Svg>
-  )
+  );
 }
 
-export default Icon
+export default Icon;

@@ -1,4 +1,8 @@
-import { clientDatabaseConfiguration, UserEntity, UserRole } from '@toptal-calories-counter/database';
+import {
+  clientDatabaseConfiguration,
+  UserEntity,
+  UserRole,
+} from '@toptal-calories-counter/database';
 import * as express from 'express';
 import AdminJS from 'adminjs';
 import * as AdminJSExpress from '@adminjs/express';
@@ -27,7 +31,7 @@ const bootstrapApp = async () => {
     resources: resources,
     dashboard: {
       handler: fetchDashboardStatistics,
-      component: AdminJS.bundle('./pages/dashboard/index.tsx')
+      component: AdminJS.bundle('./pages/dashboard/index.tsx'),
     },
     branding: {
       companyName: 'Toptal Calories Tracker',
@@ -50,23 +54,23 @@ const bootstrapApp = async () => {
   adminJs.watch();
   // @ts-ignore
   const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
-      authenticate: async (email, password) => {
-        const user = await UserEntity.findOne({ where: {email} })
-        if (user && [UserRole.SUPER_ADMIN, UserRole.ADMIN].includes(user.role)) {
-          const matched = await bcrypt.compare(password, user.hashed_password)
-          if (matched) {
-            return user
-          }
+    authenticate: async (email, password) => {
+      const user = await UserEntity.findOne({ where: { email } });
+      if (user && [UserRole.SUPER_ADMIN, UserRole.ADMIN].includes(user.role)) {
+        const matched = await bcrypt.compare(password, user.hashed_password);
+        if (matched) {
+          return user;
         }
-        return false
-      },
-      cookiePassword: 'some-secret',
+      }
+      return false;
+    },
+    cookiePassword: 'some-secret',
   });
   app.use(adminJs.options.rootPath, router);
   app.use('/static', express.static(path.join(__dirname, '..', 'assets')));
-  app.get('/', (req, res) =>{
-    res.redirect('/admin')
-  })
+  app.get('/', (req, res) => {
+    res.redirect('/admin');
+  });
   console.log(await fetchDashboardStatistics());
   app.listen(PORT, () => console.log(`AdminJS is under localhost:${PORT}`));
 };

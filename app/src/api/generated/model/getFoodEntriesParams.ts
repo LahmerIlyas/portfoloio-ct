@@ -6,4 +6,15 @@
  * OpenAPI spec version: 1.0
  */
 
-export type GetFoodEntriesParams = { fields?: string[]; s?: string; filter?: string[]; or?: string[]; sort?: string[]; join?: string[]; limit?: number; offset?: number; page?: number; cache?: number };
+export type GetFoodEntriesParams = {
+  fields?: string[];
+  s?: string;
+  filter?: string[];
+  or?: string[];
+  sort?: string[];
+  join?: string[];
+  limit?: number;
+  offset?: number;
+  page?: number;
+  cache?: number;
+};

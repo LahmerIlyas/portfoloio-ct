@@ -5,13 +5,7 @@ import { FormDateRangeInput } from '.';
 
 describe('<FormDateRangeInput />', () => {
   it('renders correctly', async () => {
-    const tree = renderer
-      .create(
-        <Formik initialValues={{}} onSubmit={() => {}}>
-          <FormDateRangeInput />
-        </Formik>,
-      )
-      .toJSON();
+    const tree = renderer.create(<FormDateRangeInput />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

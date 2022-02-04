@@ -15,10 +15,10 @@ export const FormDateTimeInput: React.FC<FormDateTimeInputProps> = (props) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     setValue(date);
   }, [date]);
-
+*/
   const onClick = useCallback(() => {
     setShow((current) => !current);
   }, []);
@@ -27,6 +27,7 @@ export const FormDateTimeInput: React.FC<FormDateTimeInputProps> = (props) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    setValue(date);
   }, []);
 
   return (

@@ -1,5 +1,5 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
 function Step2(props) {
   return (
@@ -283,7 +283,7 @@ function Step2(props) {
         fill="#263238"
       />
     </Svg>
-  )
+  );
 }
 
-export default Step2
+export default Step2;

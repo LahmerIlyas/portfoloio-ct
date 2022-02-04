@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import React, { Fragment } from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
+import { CreateFoodEntryDto } from '../../api';
 import {
   FormSubmitButton,
   FormTextInput,
@@ -13,18 +14,19 @@ import { useCreateFoodEntry } from './use-create-food-entry';
 
 export const CreateFoodEntryScreen: React.FC = (props) => {
   const { createFoodEntry } = useCreateFoodEntry();
+  const initialValues = {
+    calories_count: undefined,
+    food_name: undefined,
+    price: undefined,
+    taken_at: new Date(),
+    user_id: undefined,
+  } as any as CreateFoodEntryDto;
 
   return (
     <ScrollView style={styles.container}>
       <Logo style={styles.logo} />
       <Formik
-        initialValues={{
-          calories_count: undefined,
-          food_name: undefined,
-          price: undefined,
-          taken_at: undefined,
-          user_id: undefined,
-        }}
+        initialValues={initialValues}
         onSubmit={createFoodEntry}
         validationSchema={CreateFoodEntryValidationSchema}
         validateOnMount={false}

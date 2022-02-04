@@ -9,7 +9,6 @@ export function useCreateFoodEntry() {
   const navigation = useNavigation<CreateFoodEntryScreenNavigationProp>();
   const { refetch } = useUserFoodEntries();
   const createFoodEntry = useCallback(async (values: CreateFoodEntryDto) => {
-    console.log('creteFoodEntry', values);
     try {
       await mutateAsync({
         data: { ...values, user_id: 0 },

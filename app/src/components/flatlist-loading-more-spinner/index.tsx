@@ -9,4 +9,4 @@ export const FlatListLoadingMoreSpinner: React.FC = () => {
       <ActivityIndicator size={'large'} color={'#91C788'} />
     </View>
   );
-}
+};

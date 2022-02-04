@@ -14,7 +14,7 @@ import { UsersModule } from './modules/users/users.module';
     }),
     TypeOrmModule.forRoot(Configuration.database),
     UsersModule,
-    FoodEntriesModule
+    FoodEntriesModule,
   ],
   controllers: [],
   providers: [],

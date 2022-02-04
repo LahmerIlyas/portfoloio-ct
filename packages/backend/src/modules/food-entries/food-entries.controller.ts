@@ -2,7 +2,15 @@ import { GetManyMonthlySpendingSerializer } from './serializer/monthly-spending.
 import { GetManyDailyCalorieSerializer } from './serializer/daily-calorie.serializer';
 import { SerializerInterceptor } from './../../interceptors/serializer.interceptor';
 import { JwtAuthGuard } from './../../guards/jwt.auth-guard';
-import { Controller, Get, Inject, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  UseGuards,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import {
   Crud,
   CrudAuth,
@@ -15,7 +23,12 @@ import {
 } from '@nestjsx/crud';
 import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
 import { FoodEntriesService } from './food-entries.service';
-import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiQuery } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiQuery,
+} from '@nestjs/swagger';
 import { CreateFoodEntryDto } from './dto/create-food-entry.dto';
 import {
   FoodEntrySerializer,
@@ -78,7 +91,7 @@ export class FoodEntriesController implements CrudController<FoodEntryEntity> {
   @Override()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOperation({ operationId: 'getFoodEntries' }) 
+  @ApiOperation({ operationId: 'getFoodEntries' })
   getMany(@ParsedRequest() req: CrudRequest) {
     return this.service.getMany(req);
   }

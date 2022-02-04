@@ -1,7 +1,4 @@
 import { foodEntriesResource } from './food-entries';
-import { usersResource } from "./user";
+import { usersResource } from './user';
 
-export const resources = [
-    usersResource,
-    foodEntriesResource
-];
+export const resources = [usersResource, foodEntriesResource];

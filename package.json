@@ -7,6 +7,20 @@
   "license": "MIT",
   "private": true,
   "workspaces": {
-      "packages": ["packages/*"]
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "unit-test:backend": "yarn workspace @toptal-calories-counter/backend test",
+    "e2e-test:backend": "yarn workspace @toptal-calories-counter/backend test:e2e",
+    "unit-test:app": "npm  --prefix ./app run test",
+    "test": "run-s unit-test:backend e2e-test:backend unit-test:app",
+    "prepare": "husky install",
+    "prettier-format": "prettier --config .prettierrc --write './**/*.{ts,tsx}' ",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

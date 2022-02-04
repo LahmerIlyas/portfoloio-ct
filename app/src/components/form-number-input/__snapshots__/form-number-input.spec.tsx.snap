@@ -23,6 +23,7 @@ exports[`<FormNumberInput /> renders correctly 1`] = `
   <TextInput
     allowFontScaling={true}
     keyboardType="numeric"
+    onBlur={[Function]}
     onChangeText={[Function]}
     rejectResponderTermination={true}
     style={

@@ -22,6 +22,7 @@ exports[`<FormTextInput /> renders correctly 1`] = `
   </Text>
   <TextInput
     allowFontScaling={true}
+    onBlur={[Function]}
     onChangeText={[Function]}
     rejectResponderTermination={true}
     style={

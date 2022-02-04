@@ -6,4 +6,8 @@
  * OpenAPI spec version: 1.0
  */
 
-export type GetMonthlySpendingParams = { filter?: string[]; sort?: string[]; page?: number };
+export type GetMonthlySpendingParams = {
+  filter?: string[];
+  sort?: string[];
+  page?: number;
+};

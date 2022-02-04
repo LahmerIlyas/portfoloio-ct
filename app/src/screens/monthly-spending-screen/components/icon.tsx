@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react';
 import Svg, {
   Path,
   Ellipse,
@@ -7,8 +7,8 @@ import Svg, {
   Rect,
   Defs,
   LinearGradient,
-  Stop
-} from "react-native-svg"
+  Stop,
+} from 'react-native-svg';
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
 function Icon(props) {
@@ -34,7 +34,7 @@ function Icon(props) {
         fill="url(#paint1_linear_1271_5641)"
         fillOpacity={0.24}
         style={{
-          mixBlendMode: "multiply"
+          mixBlendMode: 'multiply',
         }}
       />
       <Path
@@ -73,12 +73,12 @@ function Icon(props) {
         fill="url(#paint5_linear_1271_5641)"
         fillOpacity={0.64}
         style={{
-          mixBlendMode: "multiply"
+          mixBlendMode: 'multiply',
         }}
       />
       <G
         style={{
-          mixBlendMode: "overlay"
+          mixBlendMode: 'overlay',
         }}
         filter="url(#filter0_i_1271_5641)"
       >
@@ -102,7 +102,7 @@ function Icon(props) {
       </G>
       <Mask
         style={{
-          maskType: "alpha"
+          maskType: 'alpha',
         }}
         maskUnits="userSpaceOnUse"
         x={0}
@@ -199,7 +199,7 @@ function Icon(props) {
         </LinearGradient>
       </Defs>
     </Svg>
-  )
+  );
 }
 
-export default Icon
+export default Icon;
