@@ -26,7 +26,13 @@ export const Pressable: React.FC<PressableProps> = ({
     [onPress],
   );
 
-  const handler = useCallback(debounce(onClick, debounce_duration || 1000), []);
+  const handler = useCallback(
+    debounce(onClick, debounce_duration || 2000, {
+      leading: true,
+      trailing: false,
+    }),
+    [],
+  );
 
   return <NativePressable {...other} onPress={handler} />;
 };
