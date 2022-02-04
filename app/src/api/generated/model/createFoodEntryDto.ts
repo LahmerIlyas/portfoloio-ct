@@ -11,5 +11,4 @@ export interface CreateFoodEntryDto {
   taken_at: string;
   calories_count: number;
   price: number;
-  user_id: number;
 }

@@ -16,7 +16,7 @@
     "e2e-test:backend": "yarn workspace @toptal-calories-counter/backend test:e2e",
     "unit-test:app": "npm  --prefix ./app run test",
     "test": "run-s unit-test:backend e2e-test:backend unit-test:app",
-    "prepare": "husky install",
+    "prepare": "npx husky install",
     "prettier-format": "prettier --config .prettierrc --write './**/*.{ts,tsx}' ",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
