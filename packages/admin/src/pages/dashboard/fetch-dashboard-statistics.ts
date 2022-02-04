@@ -2,6 +2,16 @@ import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
 import * as moment from 'moment';
 
 export async function fetchDashboardStatistics() {
+  if (process.env.NODE_ENV === 'test') {
+    return {
+      usersCount: 0,
+      foodEntriesCount: 0,
+      currentWeek: [],
+      previousWeek: [],
+      averageCaloriesCount: [],
+    };
+  }
+
   const usersCount = await UserEntity.count();
   const foodEntriesCount = await FoodEntryEntity.count();
 

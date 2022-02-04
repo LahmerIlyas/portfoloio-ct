@@ -2,6 +2,8 @@ import * as AdminJSExpress from '@adminjs/express';
 import { Database, Resource } from '@adminjs/typeorm';
 import {
   clientDatabaseConfiguration,
+  FoodEntryEntity,
+  TestDatabaseConfiguration,
   UserEntity,
   UserRole,
 } from '@toptal-calories-counter/database';
@@ -21,11 +23,15 @@ const PORT = process.env.PORT || 3001;
 
 const bootstrapApp = async () => {
   // initialize database
+  const isTest = process.env.NODE_ENV === 'test';
   // @ts-ignore
   await createConnection({
-    ...clientDatabaseConfiguration,
+    ...(isTest ? TestDatabaseConfiguration : clientDatabaseConfiguration),
   });
 
+  if (isTest) {
+    await populateTestData();
+  }
   const adminJs = new AdminJS({
     rootPath: '/admin',
     resources: resources,
@@ -71,8 +77,22 @@ const bootstrapApp = async () => {
   app.get('/', (req, res) => {
     res.redirect('/admin');
   });
-  console.log(await fetchDashboardStatistics());
   app.listen(PORT, () => console.log(`AdminJS is under localhost:${PORT}`));
 };
 
 void bootstrapApp();
+
+async function populateTestData() {
+  const user = await UserEntity.getRepository().save({
+    email: 'admin@gmail.com',
+    hashed_password: bcrypt.hashSync('123456', 10),
+    role: UserRole.ADMIN,
+  });
+  const foodEntry = await FoodEntryEntity.getRepository().save({
+    user_id: user.id,
+    food_name: 'test',
+    calories_count: 100,
+    price: 1000,
+    taken_at: '2022-02-31',
+  });
+}

@@ -35,3 +35,13 @@ export const DatabaseConfiguration = {
     migrationsDir: 'src/migrations',
   },
 };
+
+export const TestDatabaseConfiguration = {
+  entities: clientDatabaseConfiguration.entities,
+  type: 'sqlite',
+  keepConnectionAlive: true,
+  database: ':memory:',
+  dropSchema: true,
+  logging: false,
+  synchronize: true,
+};
