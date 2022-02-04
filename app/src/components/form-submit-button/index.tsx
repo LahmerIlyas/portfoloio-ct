@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  Pressable,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import { StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
 import { useFormikContext } from 'formik';
+import { Pressable } from '../pressable';
 
 interface FormSubmitButtonProps {
   title: string;

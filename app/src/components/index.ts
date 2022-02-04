@@ -6,3 +6,4 @@ export * from './form-datetime-input';
 export * from './form-date-range-input';
 export * from './flatlist-loading-more-spinner';
 export * from './flatlist-fullscreen-loading-spinner';
+export * from './pressable';
