@@ -12,10 +12,12 @@ export const FormNumberInput: React.FC<FormNumberInputProps> = (props) => {
   const [field, { touched, error, initialValue }, helpers] = useField(
     props.field,
   );
+
   return (
     <View style={{ width: '100%', marginVertical: 16 }}>
       <Text style={styles.title}>{props.title}</Text>
       <TextInput
+        onBlur={field.onBlur(props.field)}
         keyboardType="numeric"
         defaultValue={initialValue}
         style={styles.textInput}

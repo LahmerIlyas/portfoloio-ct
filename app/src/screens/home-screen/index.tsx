@@ -17,7 +17,7 @@ import {
 export const HomeScreen: React.FC = (props) => {
   const {
     data,
-    isFetching,
+    isLoading,
     isRefetching,
     refetch,
     isLoadingMore,
@@ -41,8 +41,8 @@ export const HomeScreen: React.FC = (props) => {
       <Text style={styles.subtitle}>Find, track and eat heathy food.</Text>
       <Banner style={styles.banner} />
       <FormDateRangeInput onChange={setRange} />
-      {(isFetching || isRefetching) && <FlatListFullscreenLoadingSpinner />}
-      {!(isFetching || isRefetching) && (
+      {(isLoading || isRefetching) && <FlatListFullscreenLoadingSpinner />}
+      {!(isLoading || isRefetching) && (
         <FlatList
           contentContainerStyle={{ paddingBottom: 16, paddingHorizontal: 12 }}
           removeClippedSubviews={false}

@@ -16,6 +16,7 @@ export const FormTextInput: React.FC<FormTextInputProps> = (props) => {
     <View style={{ width: '100%', marginVertical: 16 }}>
       <Text style={styles.title}>{props.title}</Text>
       <TextInput
+        onBlur={field.onBlur(props.field)}
         defaultValue={initialValue}
         style={styles.textInput}
         onChangeText={helpers.setValue}

@@ -8,6 +8,7 @@ export function useUserFoodEntries() {
   });
 
   const filter = useMemo<Array<string>>(() => {
+    console.log('triggered range update');
     return [
       range.from ? `taken_at||$gte||${range.from}` : undefined,
       range.to ? `taken_at||$lte||${range.to}` : undefined,
@@ -17,7 +18,7 @@ export function useUserFoodEntries() {
   const {
     data,
     refetch,
-    isFetching,
+    isLoading,
     isRefetching,
     fetchNextPage,
     isFetchingNextPage,
@@ -29,6 +30,7 @@ export function useUserFoodEntries() {
     },
     {
       query: {
+        queryKey: ['food-entries', filter],
         getNextPageParam: (lastPage) => {
           return lastPage.data.page < lastPage.data.pageCount
             ? lastPage.data.page + 1
@@ -39,7 +41,7 @@ export function useUserFoodEntries() {
   );
 
   const loadMore = () => {
-    if (hasNextPage && !isFetchingNextPage && !isFetching) {
+    if (hasNextPage && !isFetchingNextPage && !isLoading) {
       fetchNextPage();
     }
   };
@@ -50,7 +52,7 @@ export function useUserFoodEntries() {
         ?.map((page) => page?.data?.data || [])
         .flat() as any as FoodEntrySerializer[]) ||
       ([] as FoodEntrySerializer[]),
-    isFetching: isFetching && !isFetchingNextPage,
+    isLoading,
     isLoadingMore: isFetchingNextPage,
     isDone: !hasNextPage,
     refetch,

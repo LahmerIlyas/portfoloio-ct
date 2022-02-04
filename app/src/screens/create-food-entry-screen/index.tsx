@@ -18,7 +18,13 @@ export const CreateFoodEntryScreen: React.FC = (props) => {
     <ScrollView style={styles.container}>
       <Logo style={styles.logo} />
       <Formik
-        initialValues={{}}
+        initialValues={{
+          calories_count: undefined,
+          food_name: undefined,
+          price: undefined,
+          taken_at: undefined,
+          user_id: undefined,
+        }}
         onSubmit={createFoodEntry}
         validationSchema={CreateFoodEntryValidationSchema}
         validateOnMount={false}
@@ -42,7 +48,7 @@ export const CreateFoodEntryScreen: React.FC = (props) => {
           <FormDateTimeInput field="taken_at" title="Date" />
           <FormSubmitButton
             title="Create Entry"
-            style={{ marginTop: 'auto' }}
+            style={{ marginVertical: 32 }}
           />
         </Fragment>
       </Formik>
@@ -55,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     padding: 16,
+    paddingBottom: 32,
   },
   logo: {
     alignSelf: 'center',
