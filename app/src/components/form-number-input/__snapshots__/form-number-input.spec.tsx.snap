@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormNumberInput /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "marginVertical": 16,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "black",
+        "fontFamily": "Signika-Regular",
+        "fontSize": 18,
+      }
+    }
+  >
+    Size
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    keyboardType="numeric"
+    onChangeText={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Object {
+        "backgroundColor": "#F4F4F4",
+        "borderRadius": 8,
+        "color": "#666666",
+        "fontFamily": "Signika-Regular",
+        "fontSize": 16,
+        "marginTop": 8,
+        "paddingHorizontal": 24,
+        "paddingVertical": 24,
+      }
+    }
+    underlineColorAndroid="transparent"
+  />
+</View>
+`;

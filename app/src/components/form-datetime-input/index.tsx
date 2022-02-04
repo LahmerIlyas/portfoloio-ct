@@ -16,7 +16,6 @@ export const FormDateTimeInput: React.FC<FormDateTimeInputProps> = (props) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    console.log(date);
     setValue(date);
   }, [date]);
 
@@ -47,7 +46,7 @@ export const FormDateTimeInput: React.FC<FormDateTimeInputProps> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 16
+    marginVertical: 16,
   },
   textButton: {},
   title: {

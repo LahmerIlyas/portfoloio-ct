@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormSubmitButton /> renders correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgb(145, 199, 136)",
+        "borderRadius": 3,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 22,
+        "paddingVertical": 16,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontFamily": "Signika-Medium",
+        "fontSize": 22,
+      }
+    }
+  >
+    Apply
+  </Text>
+</View>
+`;

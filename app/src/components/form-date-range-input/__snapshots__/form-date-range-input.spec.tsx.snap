@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormDateRangeInput /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontFamily": "Signika-SemiBold",
+      }
+    }
+  >
+    From
+  </Text>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "gray",
+        "borderRadius": 8,
+        "flexGrow": 1,
+        "marginHorizontal": 4,
+        "opacity": 0.5,
+        "paddingHorizontal": 8,
+        "paddingVertical": 16,
+      }
+    }
+  >
+    <Text>
+      
+    </Text>
+  </View>
+  <Text
+    style={
+      Object {
+        "fontFamily": "Signika-SemiBold",
+      }
+    }
+  >
+    To
+  </Text>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "gray",
+        "borderRadius": 8,
+        "flexGrow": 1,
+        "marginHorizontal": 4,
+        "opacity": 0.5,
+        "paddingHorizontal": 8,
+        "paddingVertical": 16,
+      }
+    }
+  >
+    <Text>
+      
+    </Text>
+  </View>
+</View>
+`;

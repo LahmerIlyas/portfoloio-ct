@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FlatListLoadingMoreSpinner /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "height": 80,
+      "justifyContent": "center",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#91C788"
+    hidesWhenStopped={true}
+    size="large"
+  />
+</View>
+`;
