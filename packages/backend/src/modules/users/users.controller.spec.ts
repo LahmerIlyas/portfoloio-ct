@@ -2,7 +2,7 @@ import { RegisterDto } from './dto/register.dto';
 import { Configuration } from '../../core';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from '@toptal-calories-counter/database';
+import { UserEntity } from '@portfolio-calories-counter/database';
 import { Repository, MoreThanOrEqual } from 'typeorm';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';

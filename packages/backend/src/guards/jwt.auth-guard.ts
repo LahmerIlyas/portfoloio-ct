@@ -1,5 +1,5 @@
 import { JwtService } from '@nestjs/jwt';
-import { UserEntity } from '@toptal-calories-counter/database';
+import { UserEntity } from '@portfolio-calories-counter/database';
 import {
   ExecutionContext,
   Inject,

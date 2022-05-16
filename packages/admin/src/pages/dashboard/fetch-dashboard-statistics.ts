@@ -1,4 +1,7 @@
-import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
+import {
+  FoodEntryEntity,
+  UserEntity,
+} from '@portfolio-calories-counter/database';
 import * as moment from 'moment';
 
 export async function fetchDashboardStatistics() {

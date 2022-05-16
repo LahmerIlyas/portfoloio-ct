@@ -10,8 +10,8 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Toptal Calories Tracker App')
-    .setDescription('The Toptal Calories Tracker App API description')
+    .setTitle('portfolio Calories Tracker App')
+    .setDescription('The portfolio Calories Tracker App API description')
     .setVersion('1.0')
     .addTag('calories-tracker')
     .addBearerAuth()

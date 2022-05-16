@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DailyCalories } from '@toptal-calories-counter/database';
+import { DailyCalories } from '@portfolio-calories-counter/database';
 import { mockTypeormModule } from '../../core/mockTypeormModule';
 import { DailyCaloriesService } from './daily-calories.service';
 

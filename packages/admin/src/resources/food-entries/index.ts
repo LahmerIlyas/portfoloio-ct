@@ -1,4 +1,4 @@
-import { FoodEntryEntity } from '@toptal-calories-counter/database';
+import { FoodEntryEntity } from '@portfolio-calories-counter/database';
 import { ResourceWithOptions } from 'adminjs';
 
 export const foodEntriesResource: ResourceWithOptions = {

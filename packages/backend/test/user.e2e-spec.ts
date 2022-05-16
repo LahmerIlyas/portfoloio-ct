@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { Repository } from 'typeorm';
-import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
+import { FoodEntryEntity, UserEntity } from '@portfolio-calories-counter/database';
 import { Configuration } from '../src/core';
 import { FoodEntriesModule } from '../src/modules/food-entries/food-entries.module';
 import { ConfigModule } from '@nestjs/config';

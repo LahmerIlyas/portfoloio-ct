@@ -3,7 +3,7 @@ import {
   FoodEntryEntity,
   MonthlySpending,
   DailyCalories,
-} from '@toptal-calories-counter/database';
+} from '@portfolio-calories-counter/database';
 import { DataType, newDb } from 'pg-mem';
 import { Connection } from 'typeorm';
 

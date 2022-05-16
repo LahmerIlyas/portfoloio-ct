@@ -1,4 +1,4 @@
-import { DailyCalories } from '@toptal-calories-counter/database';
+import { DailyCalories } from '@portfolio-calories-counter/database';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

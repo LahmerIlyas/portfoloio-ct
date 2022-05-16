@@ -1,5 +1,5 @@
 {
-  "name": "@toptal-calories-counter/backend",
+  "name": "@portfolio-calories-counter/backend",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -33,7 +33,7 @@
     "@nestjs/typeorm": "^8.0.3",
     "@nestjsx/crud": "^5.0.0-alpha.3",
     "@nestjsx/crud-typeorm": "^5.0.0-alpha.3",
-    "@toptal-calories-counter/database": "1.0.0",
+    "@portfolio-calories-counter/database": "1.0.0",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",

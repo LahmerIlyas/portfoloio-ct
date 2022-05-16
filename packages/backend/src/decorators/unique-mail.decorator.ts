@@ -1,4 +1,4 @@
-import { UserEntity } from '@toptal-calories-counter/database';
+import { UserEntity } from '@portfolio-calories-counter/database';
 import { registerDecorator, ValidationArguments } from 'class-validator';
 
 export function UniqueEmail() {

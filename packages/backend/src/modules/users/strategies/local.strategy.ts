@@ -1,4 +1,4 @@
-import { UserEntity } from '@toptal-calories-counter/database';
+import { UserEntity } from '@portfolio-calories-counter/database';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';

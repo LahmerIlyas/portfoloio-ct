@@ -9,7 +9,7 @@ import {
   UserEntity,
   DailyCalories,
   MonthlySpending,
-} from '@toptal-calories-counter/database';
+} from '@portfolio-calories-counter/database';
 import { Configuration } from '../src/core';
 import { FoodEntriesModule } from '../src/modules/food-entries/food-entries.module';
 import { ConfigModule } from '@nestjs/config';

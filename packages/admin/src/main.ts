@@ -6,7 +6,7 @@ import {
   TestDatabaseConfiguration,
   UserEntity,
   UserRole,
-} from '@toptal-calories-counter/database';
+} from '@portfolio-calories-counter/database';
 import AdminJS from 'adminjs';
 import * as bcrypt from 'bcrypt';
 import { validate } from 'class-validator';
@@ -40,7 +40,7 @@ const bootstrapApp = async () => {
       component: AdminJS.bundle('./pages/dashboard/index.tsx'),
     },
     branding: {
-      companyName: 'Toptal Calories Tracker',
+      companyName: 'portfolio Calories Tracker',
       softwareBrothers: false,
       favicon: '/static/favicon.ico',
       logo: '/static/logo.webp',

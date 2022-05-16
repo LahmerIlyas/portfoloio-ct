@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserEntity } from '@toptal-calories-counter/database';
+import { UserEntity } from '@portfolio-calories-counter/database';
 import { UsersService } from './users.service';
 import { Repository } from 'typeorm';
 import { Configuration } from '../../core';

@@ -1,5 +1,5 @@
 {
-  "name": "@toptal-calories-counter/admin",
+  "name": "@portfolio-calories-counter/admin",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@adminjs/express": "^4.0.1",
     "@adminjs/typeorm": "^2.0.1",
-    "@toptal-calories-counter/database": "1.0.0",
+    "@portfolio-calories-counter/database": "1.0.0",
     "adminjs": "^5.5.1",
     "chart.js": "^3.7.0",
     "chartjs-adapter-moment": "^1.0.0",

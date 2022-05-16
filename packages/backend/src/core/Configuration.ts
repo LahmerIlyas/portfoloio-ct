@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { clientDatabaseConfiguration } from '@toptal-calories-counter/database';
+import { clientDatabaseConfiguration } from '@portfolio-calories-counter/database';
 import * as winston from 'winston';
 import {
   utilities as nestWinstonModuleUtilities,
@@ -27,7 +27,7 @@ export const winstonConfig = WinstonModule.createLogger({
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.ms(),
-        nestWinstonModuleUtilities.format.nestLike('Toptal Calories Tracker', {
+        nestWinstonModuleUtilities.format.nestLike('portfolio Calories Tracker', {
           prettyPrint: true,
         }),
       ),

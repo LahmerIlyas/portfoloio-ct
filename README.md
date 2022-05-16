@@ -1,4 +1,4 @@
-# toptal-calories-counter
+# portfolio-calories-counter
 
 - Create a bottom tab navigation with two additional tabs [done]
 - Create a screen to list monthly spending [done]

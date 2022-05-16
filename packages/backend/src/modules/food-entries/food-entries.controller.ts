@@ -21,7 +21,7 @@ import {
   ParsedBody,
   ParsedRequest,
 } from '@nestjsx/crud';
-import { FoodEntryEntity, UserEntity } from '@toptal-calories-counter/database';
+import { FoodEntryEntity, UserEntity } from '@portfolio-calories-counter/database';
 import { FoodEntriesService } from './food-entries.service';
 import {
   ApiBearerAuth,

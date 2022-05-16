@@ -5,7 +5,7 @@ import {
   FoodEntryEntity,
   MonthlySpending,
   UserEntity,
-} from '@toptal-calories-counter/database';
+} from '@portfolio-calories-counter/database';
 import { FoodEntriesController } from './food-entries.controller';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';

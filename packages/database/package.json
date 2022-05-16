@@ -1,5 +1,5 @@
 {
-  "name": "@toptal-calories-counter/database",
+  "name": "@portfolio-calories-counter/database",
   "version": "1.0.0",
   "license": "MIT",
   "main": "lib/index.js",

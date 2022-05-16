@@ -9,7 +9,7 @@ import {
   UserEntity,
   MonthlySpending,
   DailyCalories,
-} from '@toptal-calories-counter/database';
+} from '@portfolio-calories-counter/database';
 import { DailyCaloriesService } from './daily-calories.service';
 import { MonthlySpendingService } from './monthly-spending.service';
 

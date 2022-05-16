@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { FoodEntriesService } from './food-entries.service';
-import { FoodEntryEntity } from '@toptal-calories-counter/database';
+import { FoodEntryEntity } from '@portfolio-calories-counter/database';
 import { Logger } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { mockTypeormModule } from '../../core/mockTypeormModule';

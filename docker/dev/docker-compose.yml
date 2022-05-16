@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres:14.1
     volumes:
-      - toptal-calories-counter-postgres-volumes:/var/lib/postgresql/data
+      - portfolio-calories-counter-postgres-volumes:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_USER=root
@@ -15,4 +15,4 @@ services:
     ports:
       - 6379:6379
 volumes:
-  toptal-calories-counter-postgres-volumes:
+  portfolio-calories-counter-postgres-volumes:
